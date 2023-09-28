@@ -28,7 +28,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['login','signup']]);
+        $this->middleware('JWT', ['except' => ['login','signup','socialite']]);
     }
 
     public function signup(Request $request){
@@ -140,7 +140,6 @@ class AuthController extends Controller
                 }
                 if ($request->google_id){
                     $searchUser = User::where('google_id', $request->google_id)->first();
-//                return $this->login($request);
                 }
                 if ($request->fb_id){
                     $searchUser = User::where('fb_id', $request->fb_id)->first();

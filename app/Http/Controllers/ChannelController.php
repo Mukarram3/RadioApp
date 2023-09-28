@@ -10,7 +10,7 @@ class ChannelController extends Controller
     public function index(){
         $Channel= Channel::all();
         return response()->json([
-            'error' => true,
+            'error' => false,
             'message' => 'Success',
             'data' => $Channel,
         ]);

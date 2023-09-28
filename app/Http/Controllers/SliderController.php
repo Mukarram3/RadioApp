@@ -10,7 +10,7 @@ class SliderController extends Controller
     public function index(){
         $slider= Slider::all();
         return response()->json([
-            'error' => true,
+            'error' => false,
             'message' => 'Success',
             'data' => $slider,
         ]);

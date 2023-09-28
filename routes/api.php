@@ -65,9 +65,17 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     });
 
+    Route::group(['prefix' => 'artists'], function (){
+
+        Route::get('getartists',[\App\Http\Controllers\ArtistController::class, 'index']);
+        Route::get('getartistsongs',[\App\Http\Controllers\ArtistController::class, 'getartistsongs']);
+
+    });
+
     Route::group(['prefix' => 'songs'], function (){
 
         Route::get('getsongs',[\App\Http\Controllers\SongController::class, 'index']);
+        Route::get('getcategorysongs',[\App\Http\Controllers\SongController::class, 'getcategorysongs']);
 
     });
 
