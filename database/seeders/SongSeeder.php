@@ -29,7 +29,7 @@ class SongSeeder extends Seeder
             'stream_url' => 'url',
         ]);
 
-        DB::table('channels')->insert([
+        DB::table('songs')->insert([
             'artist_id' => '2',
             'type' => 'paid',
             'channel_id' => '3',
@@ -37,7 +37,7 @@ class SongSeeder extends Seeder
             'stream_url' => 'url',
         ]);
 
-        DB::table('channels')->insert([
+        DB::table('songs')->insert([
             'artist_id' => '4',
             'type' => 'paid',
             'channel_id' => '3',
