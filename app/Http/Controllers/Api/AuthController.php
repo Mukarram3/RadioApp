@@ -34,12 +34,7 @@ class AuthController extends Controller
     public function signup(Request $request){
         $table= User::where('email', $request->email)->first();
         if($table){
-            if ($table->is_verified == 0){
-                return $this->sendpincode($request);
-            }
-            else{
                 return response()->json(['error' => true, 'message' => 'Username or Email already exist']);
-            }
         }
         else{
             $data=array();
