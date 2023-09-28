@@ -36,7 +36,6 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
         Route::post('login', [AuthController::class, 'login']);
         Route::post('signup', [AuthController::class, 'signup']);
-        Route::post('sendpincode', [AuthController::class, 'sendpincode']);
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
         Route::post('me', [AuthController::class, 'me']);
