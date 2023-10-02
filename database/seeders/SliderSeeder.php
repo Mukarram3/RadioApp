@@ -11,7 +11,7 @@ class SliderSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): voids
+    public function run(): void
     {
         DB::table('sliders')->insert([
             'image' => asset('storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg'),
