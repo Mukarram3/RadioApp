@@ -31,6 +31,7 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
         'phone',
         'gender',
         'type',
+        'image',
         'github_id',
         'google_id',
         'fb_id',

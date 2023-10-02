@@ -16,25 +16,25 @@ class ChannelSeeder extends Seeder
         DB::table('channels')->insert([
             'title' => 'CH1 Reggage',
             'type' => 'free',
-            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
+            'image' => asset('storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg'),
             'artist_name' => 'artist_name',
         ]);
         DB::table('channels')->insert([
             'title' => 'CH2 Dance',
             'type' => 'paid',
-            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
+            'image' => asset('storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg'),
             'artist_name' => 'artist_name',
         ]);
         DB::table('channels')->insert([
             'title' => 'CH3 Party',
             'type' => 'free',
-            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
+            'image' => asset('storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg'),
             'artist_name' => 'artist_name',
         ]);
         DB::table('channels')->insert([
             'title' => 'CH4 Romance',
             'type' => 'paid',
-            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
+            'image' => asset('storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg'),
             'artist_name' => 'artist_name',
         ]);
     }

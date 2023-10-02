@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
             $table->text('type')->nullable();
+            $table->text('image')->nullable();
             $table->string('github_id')->nullable();
             $table->string('google_id')->nullable();
             $table->string('fb_id')->nullable();

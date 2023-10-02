@@ -28,7 +28,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-// Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'api'], function ($router) {
 
     //     Auth Routes
 
@@ -79,4 +79,4 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     });
 
-// });
+});

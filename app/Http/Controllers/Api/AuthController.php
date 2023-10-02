@@ -28,7 +28,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['login','signup','socialite']]);
+        $this->middleware('CheckExpiredToken', ['except' => ['login','signup','socialite']]);
     }
 
     public function signup(Request $request){
@@ -205,12 +205,22 @@ class AuthController extends Controller
     public function updateuser(Request $request){
 
         try {
-            User::find(auth()->user()->id)->update([
-                'fname' => $request->fname,
-                'lname' => $request->lname,
-                'gender' => $request->gender,
-                'password' => Hash::make($request->password),
-            ]);
+
+            if($request->hasFile('image')){
+                $image=$request->file('image');
+                    $path = 'storage/images/';
+                    $extension=$image->getClientOriginalExtension();
+                    $image_name=uniqid().".".$extension;
+                    $image->storeAs($path,$image_name);
+
+                    User::find(auth()->user()->id)->update([
+                        'fname' => $request->fname,
+                        'lname' => $request->lname,
+                        'gender' => $request->gender,
+                        'image' => $image_name,
+                        'password' => Hash::make($request->password),
+                    ]);
+            }
 
             return response()->json([
                 'error' => false,

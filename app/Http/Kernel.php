@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\JWT;
+use App\Http\Middleware\CheckExpiredToken;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -49,7 +50,8 @@ class Kernel extends HttpKernel
 
 
     protected $routeMiddleware = [
-        'JWT' => \App\Http\Middleware\JWT::class,
+        'JWT' => JWT::class,
+        'CheckExpiredToken' => CheckExpiredToken::class,
     ];
 
     /**
