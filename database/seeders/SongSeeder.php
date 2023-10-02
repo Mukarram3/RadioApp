@@ -18,7 +18,7 @@ class SongSeeder extends Seeder
             'type' => 'paid',
             'channel_id' => '1',
             'category_id' => '1',
-            'stream_url' => 'url',
+            'stream_url' => 'https://youtu.be/Q-GOFPM01d0?si=eXRloSnqr3wQtzZY',
         ]);
 
         DB::table('songs')->insert([
@@ -26,7 +26,7 @@ class SongSeeder extends Seeder
             'type' => 'paid',
             'channel_id' => '2',
             'category_id' => '4',
-            'stream_url' => 'url',
+            'stream_url' => 'https://youtu.be/Q-GOFPM01d0?si=eXRloSnqr3wQtzZY',
         ]);
 
         DB::table('songs')->insert([
@@ -34,7 +34,7 @@ class SongSeeder extends Seeder
             'type' => 'paid',
             'channel_id' => '3',
             'category_id' => '1',
-            'stream_url' => 'url',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Do Pal Ka.mp3',
         ]);
 
         DB::table('songs')->insert([
@@ -42,7 +42,7 @@ class SongSeeder extends Seeder
             'type' => 'paid',
             'channel_id' => '3',
             'category_id' => '1',
-            'stream_url' => 'url',
+            'stream_url' => 'urhttps://djsbox.fun/storage/songs/Do Pal Ka.mp3l',
         ]);
     }
 }

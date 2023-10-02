@@ -15,19 +15,19 @@ class ArtistSeeder extends Seeder
     {
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'image path',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'image path',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'image path',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'image path',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
     }
 }

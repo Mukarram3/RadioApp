@@ -14,15 +14,15 @@ class SliderSeeder extends Seeder
     public function run(): void
     {
         DB::table('sliders')->insert([
-            'image' => 'imagepath',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
 
         DB::table('sliders')->insert([
-            'image' => 'imagepath',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
 
         DB::table('sliders')->insert([
-            'image' => 'imagepath',
+            'image' => 'https://djsbox.fun/storage/images/stock-photo-portrait-of-a-young-girl-listening-to-music-at-home-2344492497.jpg',
         ]);
     }
 }
