@@ -218,6 +218,7 @@ class AuthController extends Controller
                         'lname' => $request->lname,
                         'gender' => $request->gender,
                         'image' => $image_name,
+                        'type' => $request->type,
                         'password' => Hash::make($request->password),
                     ]);
             }
