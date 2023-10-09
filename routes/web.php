@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -54,3 +55,13 @@ Route::group(['prefix' => 'Slider'], function () {
     Route::post('store-slider', [SliderController::class, 'store']);
 
 });
+
+Route::group(['prefix' => 'Channel'], function () {
+
+    Route::get('/', [ChannelController::class, 'index']);
+    Route::get('fetch-channel', [ChannelController::class, 'fetchchannel']);
+    Route::post('store-channel', [ChannelController::class, 'store']);
+
+});
+
+

@@ -61,7 +61,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     Route::group(['prefix' => 'channels'], function (){
 
-        Route::get('getchannels',[\App\Http\Controllers\ChannelController::class, 'index']);
+        Route::get('getchannels',[\App\Http\Controllers\ChannelController::class, 'getchannels']);
 
     });
 
