@@ -49,13 +49,13 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     Route::group(['prefix' => 'category'], function (){
 
-        Route::get('getcategories',[\App\Http\Controllers\CategoryController::class, 'index']);
+        Route::get('getcategories',[\App\Http\Controllers\CategoryController::class, 'getcategories']);
 
     });
 
     Route::group(['prefix' => 'slider'], function (){
 
-        Route::get('getslider',[\App\Http\Controllers\SliderController::class, 'index']);
+        Route::get('getslider',[\App\Http\Controllers\SliderController::class, 'getslider']);
 
     });
 
@@ -67,7 +67,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     Route::group(['prefix' => 'artists'], function (){
 
-        Route::get('getartists',[\App\Http\Controllers\ArtistController::class, 'index']);
+        Route::get('getartists',[\App\Http\Controllers\ArtistController::class, 'getartists']);
         Route::post('getartistsongs',[\App\Http\Controllers\ArtistController::class, 'getartistsongs']);
 
     });

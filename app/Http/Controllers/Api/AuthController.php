@@ -222,6 +222,15 @@ class AuthController extends Controller
                         'password' => Hash::make($request->password),
                     ]);
             }
+            else{
+                User::find(auth()->user()->id)->update([
+                    'fname' => $request->fname,
+                    'lname' => $request->lname,
+                    'gender' => $request->gender,
+                    'type' => $request->type,
+                    'password' => Hash::make($request->password),
+                ]);
+            }
 
             return response()->json([
                 'error' => false,

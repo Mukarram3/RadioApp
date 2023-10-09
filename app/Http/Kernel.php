@@ -52,6 +52,9 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'JWT' => JWT::class,
         'CheckExpiredToken' => CheckExpiredToken::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 
     /**
