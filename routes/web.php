@@ -1,14 +1,12 @@
 <?php
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArtistController;
-
-use Illuminate\Support\Str;
-use TomorrowIdeas\Plaid\Plaid;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +26,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'isadmin']], function(){
 
 Route::resource('Users', UserController::class);
 Route::resource('roles', RoleController::class);
@@ -64,4 +64,12 @@ Route::group(['prefix' => 'Channel'], function () {
 
 });
 
+Route::group(['prefix' => 'Plan'], function () {
 
+    Route::get('/', [PlanController::class, 'index']);
+    Route::get('fetch-plan', [PlanController::class, 'fetchplan']);
+    Route::post('store-plan', [PlanController::class, 'store']);
+
+});
+
+});

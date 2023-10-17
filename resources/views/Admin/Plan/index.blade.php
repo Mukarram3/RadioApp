@@ -1,6 +1,6 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Channels')
+@section('title', 'Plans')
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">
@@ -52,9 +52,10 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>Type</th>
-                                <th>Artist Name</th>
-                                <th>Image</th>
+                                <th>Features</th>
+                                <th>Cost</th>
+                                <th>Expiration in Months</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                         </table>
@@ -92,7 +93,7 @@ var KTDatatablesDataSourceAjaxServer = function() {
             }
         });
         var tableEditor= new $.fn.dataTable.Editor({
-            ajax: HOST_URL+ "/Channel/store-channel",
+            ajax: HOST_URL+ "/Plan/store-plan",
             type: "post",
             table: "#kt_datatable",
             display: "bootstrap",
@@ -104,23 +105,21 @@ var KTDatatablesDataSourceAjaxServer = function() {
                     name: "title"
                 },
                 {
-                    label: "Type",
-                    name: "type"
+                    label: "Features",
+                    name: "features"
                 },
                 {
-                    label: "Artist Name",
-                    name: "artist_name"
+                    label: "Cost",
+                    name: "cost"
                 },
                 {
-                            label: "Image:", name: "image",
-                            type: "upload",
-                            display: function (file_id) {
-                                // console.log(file_id);
-                                return '<img src="' + HOST_URL + '/storage/' + file_id + '"/>';
-                            },
-                            clearText: "Clear",
-                            noImageText: 'No image'
-                        }
+                    label: "Status",
+                    name: "status"
+                },
+                {
+                    label: "Expiration in Months",
+                    name: "expiration"
+                },
             ]
         });
         $('#kt_datatable').on('click', 'tbody td:not(:first-child)', function (e) {
@@ -139,7 +138,7 @@ var KTDatatablesDataSourceAjaxServer = function() {
             processing: true,
             serverSide: true,
             ajax: {
-                url: HOST_URL + '/Channel/fetch-channel',
+                url: HOST_URL + '/Plan/fetch-plan',
                 type: 'GET',
             },
             "select": {
@@ -148,18 +147,10 @@ var KTDatatablesDataSourceAjaxServer = function() {
             columns: [
                 {data: 'id'},
                 {data: 'title'},
-                {data: 'type'},
-                {data: 'artist_name'},
-                {
-                            data: "image",
-                            render: function (file_id) {
-                                return file_id ?
-                                    '<img style="height: auto;width: 70px;" src="' + HOST_URL + "/storage/" + file_id + '"/>' :
-                                    null;
-                            },
-                            defaultContent: "No image",
-                            title: "Image"
-                        },
+                {data: 'features'},
+                {data: 'cost'},
+                {data: 'expiration'},
+                {data: 'status'},
             ],
             buttons: [
                 { extend: "create", editor: tableEditor ,className:'btn btn-outline-success font-weight-bold'},

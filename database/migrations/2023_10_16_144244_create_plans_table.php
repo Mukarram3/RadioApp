@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('songs', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->integer('artist_id')->nullable();
-            $table->integer('channel_id')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->integer('plan_id')->nullable();
-            $table->string('type')->nullable();
-            $table->string('stream_type')->nullable();
-            $table->text('stream_url')->nullable();
+            $table->text('features')->nullable();
+            $table->boolean('status')->default(true);
+            $table->string('cost')->nullable();
+            $table->integer('expiration')->nullable();
+            // $table->dateTime('expiration')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('songs');
+        Schema::dropIfExists('plans');
     }
 };

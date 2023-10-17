@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\JWT;
 use App\Http\Middleware\CheckExpiredToken;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\IsAdmin;
 
 class Kernel extends HttpKernel
 {
@@ -55,6 +56,7 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
     'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
     'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+    'isadmin' => IsAdmin::class
     ];
 
     /**

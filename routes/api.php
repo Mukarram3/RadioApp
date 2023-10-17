@@ -28,7 +28,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-Route::group(['middleware' => 'api'], function ($router) {
+// Route::group(['middleware' => 'api'], function ($router) {
 
     //     Auth Routes
 
@@ -62,6 +62,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'channels'], function (){
 
         Route::get('getchannels',[\App\Http\Controllers\ChannelController::class, 'getchannels']);
+        Route::post('store-channel', [\App\Http\Controllers\ChannelController::class, 'storeChannel']);
 
     });
 
@@ -79,4 +80,23 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     });
 
-});
+    Route::group(['prefix' => 'plans'], function (){
+
+        Route::get('getplans',[\App\Http\Controllers\PlanController::class, 'getplans']);
+
+    });
+
+    Route::group(['prefix' => 'Favourite'], function (){
+
+        Route::post('storesong',[\App\Http\Controllers\FavouritesongController::class, 'storesong']);
+        Route::post('getsong',[\App\Http\Controllers\FavouritesongController::class, 'getsong']);
+
+    });
+
+    Route::group(['prefix' => 'Subscription'], function (){
+
+        Route::post('store',[\App\Http\Controllers\SubscriptionController::class, 'store']);
+
+    });
+
+// });

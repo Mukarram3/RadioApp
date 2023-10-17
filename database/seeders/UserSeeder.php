@@ -25,5 +25,17 @@ class UserSeeder extends Seeder
         $table->save();
 
         $table->assignRole(['Admin']);
+
+        $table=new User();
+        $table->fname='user';
+        $table->lname = 'user';
+        $table->email = 'user@gmail.com';
+        $table->password = Hash::make('useruser');
+        $table->phone = '1213456789';
+        $table->gender = 'male';
+        $table->type = 'User';
+        $table->save();
+
+        $table->assignRole(['User']);
     }
 }
