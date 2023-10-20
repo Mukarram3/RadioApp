@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('image')->nullable();
+            $table->boolean('is_scheduled')->default(false);
             $table->timestamps();
         });
     }

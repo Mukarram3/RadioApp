@@ -11,7 +11,7 @@ use Yajra\DataTables\Facades\DataTables;
 class ArtistController extends Controller
 {
     public function getartists(){
-        $Artist= Artist::all();
+        $Artist= Artist::where('is_scheduled', false)->get();
         return response()->json([
             'error' => false,
             'message' => 'Success',
@@ -19,7 +19,7 @@ class ArtistController extends Controller
         ]);
     }
     public function getartistsongs(Request $request){
-        $Song= Song::where('artist_id', $request->artist_id)->get();
+        $Song= Song::where('artist_id', $request->artist_id)->where('stream_type','radio station')->get();
         return response()->json([
             'error' => false,
             'message' => 'Success',
@@ -31,11 +31,6 @@ class ArtistController extends Controller
     {
         return view('Admin.Artist.index');
     }
-
-    // public function artistindexpage(){
-    //     $categories= Artist::all();
-    //     return view('User.categories',compact('categories'));
-    // }
 
     public function fetchartist(){
         $Category=Artist::all();

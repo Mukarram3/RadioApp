@@ -94,5 +94,49 @@ class SongSeeder extends Seeder
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '4',
+            'type' => 'free',
+            'stream_type' => 'video',
+            'category_id' => '2',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '4',
+            'type' => 'free',
+            'stream_type' => 'video',
+            'category_id' => '2',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '3',
+            'type' => 'free',
+            'stream_type' => 'music',
+            'category_id' => '3',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '3',
+            'type' => 'free',
+            'stream_type' => 'music',
+            'category_id' => '1',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Do Pal Ka.mp3',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
     }
 }

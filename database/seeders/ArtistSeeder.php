@@ -20,12 +20,14 @@ class ArtistSeeder extends Seeder
         DB::table('artists')->insert([
             'name' => 'artist name',
             'image' => 'editor/20231008_185238_923073588239_status_249c5ea761f54a2f8de4417457b733b3.jpg',
+            'is_scheduled' => true,
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
             'image' => 'editor/20231008_185228_923015967113_status_79990de39ee44362aa9b229aee69c471.jpg',
+            'is_scheduled' => true,
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

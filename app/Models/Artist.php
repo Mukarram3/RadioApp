@@ -10,4 +10,13 @@ class Artist extends Model
     use HasFactory;
     protected $table= 'artists';
     protected $fillable= ['name','image'];
+
+    public function songs(){
+        return $this->hasMany(Song::class);
+    }
+
+    public function scheduleartist(){
+        return $this->hasMany(Scheduleartist::class);
+    }
+
 }

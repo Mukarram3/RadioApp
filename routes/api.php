@@ -86,6 +86,12 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     });
 
+    Route::group(['prefix' => 'schedule'], function (){
+
+        Route::post('/artists',[\App\Http\Controllers\ScheduleArtist::class, 'scheduleartists']);
+
+    });
+
     Route::group(['prefix' => 'Favourite'], function (){
 
         Route::post('storesong',[\App\Http\Controllers\FavouritesongController::class, 'storesong']);
