@@ -84,7 +84,7 @@ class AuthController extends Controller
     public function me(Request $request)
     {
         return response()->json([
-            'error' => true,
+            'error' => false,
             'message' => 'User Profile',
             'user' => auth()->user(),
             ]);
