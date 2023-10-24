@@ -19,11 +19,13 @@ class ArtistController extends Controller
         ]);
     }
     public function getartistsongs(Request $request){
-        $Song= Song::where('artist_id', $request->artist_id)->where('stream_type','radio station')->get();
+        $Song= Song::where('artist_id', $request->artist_id)->where('stream_type','radio station')->with('favsongs')->get();
+        // return $Song->t
         return response()->json([
             'error' => false,
             'message' => 'Success',
-            'data' => $Song,
+            'artist_songs' => $Song,
+            // 'fav_songs' =>
         ]);
     }
 

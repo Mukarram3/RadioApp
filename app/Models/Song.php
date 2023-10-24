@@ -24,4 +24,14 @@ class Song extends Model
     public function hasplan(){
         return $this->belongsTo(Plan::class, 'plan_id', 'id');
     }
+
+    public function favsongs()
+    {
+        return $this->belongsTo(Favouritesong::class, 'id','song_id');
+    }
+
+    public function isLikedByUser($user)
+    {
+        return $this->users->contains($user);
+    }
 }
