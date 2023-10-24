@@ -12,7 +12,7 @@ class FavouritesongController extends Controller
         return response()->json([
             'error' => false,
             'message' => 'Success',
-            'songs' => Favouritesong::where('user_id',$request->user_id),
+            'songs' => Favouritesong::where('user_id',$request->user_id)->get(),
         ]);
     }
     public function storesong(Request $request){
