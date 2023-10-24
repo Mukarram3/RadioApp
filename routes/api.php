@@ -95,6 +95,7 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
     Route::group(['prefix' => 'Favourite'], function (){
 
         Route::post('storesong',[\App\Http\Controllers\FavouritesongController::class, 'storesong']);
+        Route::post('unfavsong',[\App\Http\Controllers\FavouritesongController::class, 'unfavsong']);
         Route::post('getsong',[\App\Http\Controllers\FavouritesongController::class, 'getsong']);
 
     });

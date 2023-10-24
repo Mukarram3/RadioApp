@@ -28,7 +28,24 @@ class FavouritesongController extends Controller
         }
         catch(Exception $e){
             return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function unfavsong(Request $request){
+        try{
+            $Favouritesong= Favouritesong::where('song_id',$request->song_id)->first();
+            $Favouritesong->delete();
+            return response()->json([
                 'error' => false,
+                'message' => 'Success'
+            ]);
+        }
+        catch(Exception $e){
+            return response()->json([
+                'error' => true,
                 'message' => $e->getMessage(),
             ]);
         }
