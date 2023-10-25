@@ -38,7 +38,7 @@ class SongSeeder extends Seeder
             'channel_id' => '2',
             'category_id' => '4',
             'plan_id' => '1',
-            'stream_url' => 'https://www.youtube.com/watch?v=s4diAXMgk4k',
+            'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
@@ -51,7 +51,7 @@ class SongSeeder extends Seeder
             'channel_id' => '3',
             'category_id' => '1',
             // 'plan_id' => '',
-            'stream_url' => 'https://www.youtube.com/watch?v=Snnvexj0HwA',
+            'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
@@ -64,7 +64,7 @@ class SongSeeder extends Seeder
             'channel_id' => '3',
             'category_id' => '1',
             // 'plan_id' => '',
-            'stream_url' => 'https://www.youtube.com/watch?v=oVOuXYtqi6I',
+            'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
@@ -123,7 +123,7 @@ class SongSeeder extends Seeder
             'type' => 'free',
             'stream_type' => 'music',
             'category_id' => '3',
-            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'stream_url' => 'https://djsbox.fun/storage/songs/Do Pal Ka.mp3',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
