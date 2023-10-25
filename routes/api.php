@@ -28,7 +28,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-// Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'api'], function ($router) {
 
     //     Auth Routes
 
@@ -94,9 +94,8 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     Route::group(['prefix' => 'Favourite'], function (){
 
-        Route::post('storesong',[\App\Http\Controllers\FavouritesongController::class, 'storesong']);
-        Route::post('unfavsong',[\App\Http\Controllers\FavouritesongController::class, 'unfavsong']);
-        Route::post('getsong',[\App\Http\Controllers\FavouritesongController::class, 'getsong']);
+        Route::post('song',[\App\Http\Controllers\FavouritesongController::class, 'song']);
+        Route::get('getsong',[\App\Http\Controllers\FavouritesongController::class, 'getsong']);
 
     });
 
@@ -106,4 +105,4 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     });
 
-// });
+});

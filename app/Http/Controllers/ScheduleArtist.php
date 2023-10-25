@@ -11,7 +11,10 @@ use Yajra\DataTables\DataTables;
 
 class ScheduleArtist extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
 
     public function scheduleartists(Request $request){
         $scheduleartists= \App\Models\Scheduleartist::where('date','LIKE',"%$request->date%")->with('artist')->get();

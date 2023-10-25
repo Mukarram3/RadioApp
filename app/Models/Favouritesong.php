@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Favouritesong extends Model
 {
     use HasFactory;
+
+    public function song(){
+        return $this->belongsTo(Song::class,'song_id','id');
+    }
 }

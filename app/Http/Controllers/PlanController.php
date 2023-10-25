@@ -8,6 +8,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PlanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getplans(){
         $Plan= Plan::all();
         return response()->json([

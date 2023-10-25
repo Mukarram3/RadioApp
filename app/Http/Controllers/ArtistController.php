@@ -10,6 +10,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ArtistController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getartists(){
         $Artist= Artist::where('is_scheduled', false)->get();
         return response()->json([
@@ -19,10 +23,16 @@ class ArtistController extends Controller
         ]);
     }
     public function getartistsongs(Request $request){
-        $Song= Song::where('artist_id', $request->artist_id)->where('stream_type','radio station')->with('favsongs')->get();
+
+        $Song= Song::where('artist_id', $request->artist_id)->where('stream_type','radio station')
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
 
         $Song->each(function ($song) {
-            $song->isEmptyFavsongs = $song->favsongs === null;
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
         });
 
         return response()->json([

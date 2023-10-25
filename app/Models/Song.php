@@ -29,9 +29,4 @@ class Song extends Model
     {
         return $this->belongsTo(Favouritesong::class, 'id','song_id');
     }
-
-    public function isLikedByUser($user)
-    {
-        return $this->users->contains($user);
-    }
 }

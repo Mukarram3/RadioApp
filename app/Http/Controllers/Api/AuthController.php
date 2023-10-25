@@ -217,7 +217,7 @@ class AuthController extends Controller
                         'fname' => $request->fname,
                         'lname' => $request->lname,
                         'gender' => $request->gender,
-                        'image' => $image_name,
+                        'image' => 'https://djsbox.fun/storage/images'.$image_name,
                         'type' => $request->type,
                         'password' => Hash::make($request->password),
                     ]);

@@ -13,8 +13,20 @@ use Yajra\DataTables\DataTables;
 
 class SongController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function index(){
-        $Song= Song::all();
+        $Song= Song::with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
         return response()->json([
             'error' => false,
             'message' => 'Success',
@@ -23,7 +35,16 @@ class SongController extends Controller
     }
 
     public function getcategorysongs(Request $request){
-        $Song= Song::where('category_id', $request->category_id)->get();
+        $Song= Song::where('category_id', $request->category_id)
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
         return response()->json([
             'error' => false,
             'message' => 'Success',
