@@ -286,7 +286,7 @@
                 <!--begin::Toggle-->
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                        <img class="h-20px w-20px rounded-sm" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&bold=true" alt="" />
+                        {{-- <img class="h-20px w-20px rounded-sm" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&bold=true" alt="" /> --}}
                     </div>
                 </div>
                 <!--end::Toggle-->
@@ -298,7 +298,7 @@
                         <li class="navi-item">
                             <a href="#" class="navi-link">
                                         <span class="symbol symbol-20 mr-3">
-                                            <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}" alt="" />
+                                            {{-- <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}" alt="" /> --}}
                                         </span>
                                 <span class="navi-text">English</span>
                             </a>

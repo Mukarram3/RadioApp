@@ -105,4 +105,12 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     });
 
+    Route::group(['prefix' => 'Chat'], function (){
+
+        Route::post('send',[\App\Http\Controllers\ChatController::class, 'send']);
+        Route::get('receive',[\App\Http\Controllers\ChatController::class, 'receive']);
+        Route::get('del_message',[\App\Http\Controllers\ChatController::class, 'delete']);
+
+    });
+
 });

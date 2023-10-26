@@ -9,10 +9,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('CheckExpiredToken');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('CheckExpiredToken');
+    // }
     public function getcategories(){
         $categories= Category::all();
         return response()->json([

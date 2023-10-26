@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use PragmaRX\Google2FA\Google2FA;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use URL;
 
 class AuthController extends Controller
 {
@@ -217,7 +218,7 @@ class AuthController extends Controller
                         'fname' => $request->fname,
                         'lname' => $request->lname,
                         'gender' => $request->gender,
-                        'image' => 'https://djsbox.fun/storage/images'.$image_name,
+                        'image' => URL::to('/').'/storage/images'.$image_name,
                         'type' => $request->type,
                         'password' => Hash::make($request->password),
                     ]);

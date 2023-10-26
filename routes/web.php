@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth', 'isadmin']], function(){
+// Route::group(['middleware' => ['auth', 'isadmin']], function(){
 
 Route::resource('Users', UserController::class);
 Route::resource('roles', RoleController::class);
@@ -114,4 +114,4 @@ Route::group(['prefix' => 'ScheduleArtist'], function () {
 
 });
 
-});
+// });

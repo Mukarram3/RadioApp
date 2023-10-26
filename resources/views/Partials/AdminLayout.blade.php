@@ -88,7 +88,7 @@
                 <!--begin::Logo-->
                 <a href="{{ url('admin/dashboard') }}" class="brand-logo">
                     {{-- <img alt="Logo" src="{{ logo() }}" /> --}}
-                    {{auth()->user()->fname}} &nbsp {{auth()->user()->lname}}
+                    {{-- {{auth()->user()->fname}} &nbsp {{auth()->user()->lname}} --}}
                 </a>
                 <!--end::Logo-->
                 <!--begin::Toggle-->
