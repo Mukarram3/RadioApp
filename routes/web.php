@@ -26,7 +26,7 @@ use App\Http\Controllers\ArtistController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Admin.User.demo');
 });
 
 Auth::routes();

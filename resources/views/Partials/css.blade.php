@@ -7,6 +7,7 @@
 <!--end::Fonts-->
 <!--begin::Page Vendors Styles(used by this page)-->
 <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 <!--end::Page Vendors Styles-->
 <!--begin::Global Theme Styles(used by all pages)-->
 <link href="{{ asset('assets/plugins/global/plugins.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />

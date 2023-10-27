@@ -10,10 +10,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ArtistController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getartists(){
         $Artist= Artist::where('is_scheduled', false)->get();
         return response()->json([
