@@ -12,7 +12,7 @@ class ChannelController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['getchannels','storeChannel']]);
     }
     public function getchannels(){
         $Channel= Channel::all();
@@ -58,7 +58,7 @@ class ChannelController extends Controller
         }
         catch(Exception $e){
             return response()->json([
-                'error' => false,
+                'error' => true,
                 'message' => $e->getMessage(),
             ]);
         }

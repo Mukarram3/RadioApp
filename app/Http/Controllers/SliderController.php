@@ -11,7 +11,7 @@ class SliderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['getslider']]);
     }
     public function getslider(){
         $slider= Slider::all();
@@ -26,11 +26,6 @@ class SliderController extends Controller
     {
         return view('Admin.Slider.index');
     }
-
-    // public function artistindexpage(){
-    //     $categories= Artist::all();
-    //     return view('User.categories',compact('categories'));
-    // }
 
     public function fetchslider(){
         $Slider=Slider::all();

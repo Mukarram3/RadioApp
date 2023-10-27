@@ -13,7 +13,7 @@ class ScheduleArtist extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['scheduleartists']]);
     }
 
     public function scheduleartists(Request $request){

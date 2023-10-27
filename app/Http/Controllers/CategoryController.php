@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['getcategories']]);
     }
     public function getcategories(){
         $categories= Category::all();

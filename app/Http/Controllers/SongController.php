@@ -15,7 +15,7 @@ class SongController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['index','getcategorysongs']]);
     }
     public function index(){
         $Song= Song::with(['favsongs' => function ($query) {

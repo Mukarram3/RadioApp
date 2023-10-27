@@ -12,7 +12,7 @@ class ArtistController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken', ['only'=> ['getartists','getartistsongs']]);
     }
     public function getartists(){
         $Artist= Artist::where('is_scheduled', false)->get();

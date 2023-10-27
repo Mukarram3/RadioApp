@@ -47,7 +47,7 @@
                         </div>
 
                         <!--begin: Datatable-->
-                        <table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable" style="margin-top: 13px !important">
+                        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                             <thead>
                             <tr>
                                 <th><input type="checkbox" name="main_checkbox"><label></label></th>
@@ -110,6 +110,9 @@ $.ajaxSetup({
                      ajax:"{{ route('get.songs.list') }}",
                      "pageLength":5,
                      "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"All"]],
+                     crollY: '50vh',
+                     scrollX: true,
+                     scrollCollapse: true,
                      columns:[
                         //  {data:'id', name:'id'},
                          {data:'checkbox', name:'checkbox', orderable:false, searchable:false},

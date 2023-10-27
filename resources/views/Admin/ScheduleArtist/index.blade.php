@@ -110,6 +110,9 @@ $.ajaxSetup({
                      ajax:"{{ route('get.scheduleartists.list') }}",
                      "pageLength":5,
                      "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"All"]],
+                     crollY: '50vh',
+                     scrollX: true,
+                     scrollCollapse: true,
                      columns:[
                         //  {data:'id', name:'id'},
                          {data:'checkbox', name:'checkbox', orderable:false, searchable:false},
