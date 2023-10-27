@@ -9,10 +9,10 @@ use URL;
 
 class ChatController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function send(Request $request){
 
         try{

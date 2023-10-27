@@ -131,7 +131,7 @@ class AuthController extends Controller
     public function socialite(Request $request){
         try {
 
-                if ($request->github_id){
+                if ($request->apple_id){
                     $searchUser = User::where('github_id', $request->github_id)->first();
                 }
                 if ($request->google_id){
