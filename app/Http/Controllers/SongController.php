@@ -13,10 +13,10 @@ use Yajra\DataTables\DataTables;
 
 class SongController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function index(){
         $Song= Song::with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);

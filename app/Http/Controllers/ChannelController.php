@@ -10,10 +10,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ChannelController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getchannels(){
         $Channel= Channel::all();
         return response()->json([

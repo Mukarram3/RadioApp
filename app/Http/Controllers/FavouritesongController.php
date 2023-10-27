@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class FavouritesongController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getsong(Request $request){
         return response()->json([
             'error' => false,

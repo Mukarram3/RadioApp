@@ -9,10 +9,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SliderController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function getslider(){
         $slider= Slider::all();
         return response()->json([

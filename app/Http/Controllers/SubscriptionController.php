@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('CheckExpiredToken');
-    // }
+    public function __construct()
+    {
+        $this->middleware('CheckExpiredToken');
+    }
     public function store(Request $request){
         try{
             $Subscription= new Subscription();
