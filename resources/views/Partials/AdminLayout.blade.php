@@ -95,7 +95,7 @@
                 <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
                     <a href="{{ url('/Users') }}" class="brand-logo" style="color: white !important;">
-                        {{ auth()->user()->fname. ' ' . auth()->user()->lname }}
+                      /*  {{ auth()->user()->fname. ' ' . auth()->user()->lname }} */
                     </a>
                     <!--end::Logo-->
                     <!--begin::Toggle-->
