@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Scrollable Examples</title>
+    @yield('title')
     <meta name="description" content="Scrollable datatables examples" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!--begin::Fonts-->
@@ -95,7 +95,7 @@
                 <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
                     <a href="{{ url('/Users') }}" class="brand-logo" style="color: white !important;">
-                        {{ auth()->user()->fname. ' ' . auth()->user()->lname }}
+                        {{-- {{ auth()->user()->fname. ' ' . auth()->user()->lname }} --}}
                     </a>
                     <!--end::Logo-->
                     <!--begin::Toggle-->

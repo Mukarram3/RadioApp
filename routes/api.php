@@ -113,4 +113,10 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     });
 
+    Route::group(['prefix' => 'Search'], function (){
+
+        Route::post('artist',[\App\Http\Controllers\SearchController::class, 'searchartist']);
+
+    });
+
 });
