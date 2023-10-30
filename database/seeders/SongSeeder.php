@@ -101,7 +101,7 @@ class SongSeeder extends Seeder
             'type' => 'free',
             'stream_type' => 'video',
             'category_id' => '2',
-            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'stream_url' => 'http://listen.42fm.ru:8000/stealkill-5.0.ogg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
@@ -112,7 +112,7 @@ class SongSeeder extends Seeder
             'type' => 'free',
             'stream_type' => 'video',
             'category_id' => '2',
-            'stream_url' => 'https://djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014.mp4',
+            'stream_url' => 'http://listen.42fm.ru:8000/stealkill-5.0.ogg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

@@ -11,4 +11,9 @@ class Channel extends Model
 
     protected $table= 'channels';
     protected $fillable= ['title','image','type','artist_name'];
+
+    public function plans()
+{
+    return $this->hasOne(Plan::class, 'id', 'plan_id');
+}
 }
