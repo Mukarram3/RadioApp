@@ -1,6 +1,6 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Users')
+@section('title', 'Show User')
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">

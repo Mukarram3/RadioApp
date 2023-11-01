@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::group(['middleware' => ['auth', 'isadmin']], function(){
+Route::group(['middleware' => ['auth', 'isadmin']], function(){
 
 Route::resource('Users', UserController::class);
 Route::resource('roles', RoleController::class);
@@ -64,9 +64,15 @@ Route::group(['prefix' => 'Slider'], function () {
 
 Route::group(['prefix' => 'Channel'], function () {
 
-    Route::get('/', [ChannelController::class, 'index']);
-    Route::get('fetch-channel', [ChannelController::class, 'fetchchannel']);
-    Route::post('store-channel', [ChannelController::class, 'store']);
+    Route::get('/', [ChannelController::class, 'index'])->name('channelsindex');
+    Route::get('/getChannelList', [ChannelController::class, 'getChannelsList'])->name('get.channels.list');
+    Route::get('/create',[ChannelController::class,'create'])->name('createchannel');
+    Route::post('/deleteChannel', [ChannelController::class, 'destroy'])->name('delete.channel');
+    Route::post('/deleteSelectedChannel', [ChannelController::class, 'deleteSelectedchannels'])->name('delete.selected.channels');
+    // Route::post('/getChannelDetails', [ChannelController::class, 'getChannelDetails'])->name('get.channel.details');
+    Route::post('/add-Channel', [ChannelController::class, 'store'])->name('create.channel.details');
+    Route::get('/gethannelDetails/{id}', [ChannelController::class, 'edit'])->name('get.Channel.details');
+    Route::post('/updateChannelDetails',[ChannelController::class, 'update'])->name('update.channel.details');
 
 });
 
@@ -81,16 +87,8 @@ Route::group(['prefix' => 'Plan'], function () {
 Route::group(['prefix' => 'Song'], function () {
 
     Route::get('/', [SongController::class, 'indexajax'])->name('songsindex');
-    Route::get('RadioStation/LiveDj', function(){
-        $artists= Artist::all();
-        $channels= Channel::all();
-        $categories= Category::all();
-        $plans= Plan::all();
-        return view('Admin.Song.create',compact('artists','channels','categories','plans'));
+    Route::get('RadioStation/LiveDj',[SongController::class,'RadioStation_LiveDj'])->name('createsong');
 
-    });
-
-    // Route::get('/edit-song',[SongController::class,'addCountry'])->name('add.country');
     Route::get('/getSongsList', [SongController::class, 'getSongsList'])->name('get.songs.list');
     Route::post('/deleteSong', [SongController::class, 'destroy'])->name('delete.song');
     Route::post('/deleteSelectedSongs', [SongController::class, 'deleteSelectedSongs'])->name('delete.selected.songs');
@@ -105,7 +103,7 @@ Route::group(['prefix' => 'ScheduleArtist'], function () {
 
     Route::get('/', [ScheduleArtist::class, 'indexajax'])->name('scheduleartists');
     Route::get('/getList', [ScheduleArtist::class, 'getSongsList'])->name('get.scheduleartists.list');
-    Route::get('/create',[ScheduleArtist::class,'create'])->name('createpage');
+    Route::get('/create',[ScheduleArtist::class,'create'])->name('createscheduleartist');
     Route::post('/Schedule', [ScheduleArtist::class, 'store'])->name('create.Schedule.details');
     Route::post('/deletScheduleArtist', [ScheduleArtist::class, 'destroy'])->name('delete.ScheduleArtist');
     Route::post('/deleteSelectedScheduleArtist', [ScheduleArtist::class, 'deleteSelectedScheduleArtist'])->name('delete.selected.ScheduleArtist');
@@ -114,4 +112,4 @@ Route::group(['prefix' => 'ScheduleArtist'], function () {
 
 });
 
-// });
+});

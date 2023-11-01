@@ -43,6 +43,7 @@
                 <div class="card card-custom">
                     <div class="card-body">
 
+                        <a class="btn btn-success" href="{{ route('songsindex') }}"> Go Back</a>
 
                         <div style="text-align: right;" class="btn-group" id="dtButtons" role="group"
                             aria-label="Button group with nested dropdown">

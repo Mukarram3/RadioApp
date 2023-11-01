@@ -2,6 +2,8 @@
 
 @section('title', 'Users')
 @section('css')
+<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+<link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">    />
     <style>
         .dt-button-collection {
             left: 0 !important;
@@ -26,7 +28,7 @@
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                     <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                    <a href="{{ route('Users.create') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                     <!--end::Actions-->
                 </div>
 
@@ -55,12 +57,6 @@
 
                                 </div>
 
-                                <div class="pull-right">
-
-                                    <a class="btn btn-success" href="{{ route('Users.create') }}"> Create New User</a>
-
-                                </div>
-
                             </div>
 
                         </div>
@@ -68,7 +64,7 @@
 
                         <div class="card-body">
                             <!--begin: Datatable-->
-                            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+                            <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                                 <thead>
                                     <tr>
 
@@ -107,8 +103,7 @@
 
                                         <td>{{ $user->phone }}</td>
 
-                                        <td><img src="{{ asset('storage/' . $user->image) }}" width="50px"
-                                                height="50px" alt="" srcset=""></td>
+                                        <td><img src="{{ asset('storage/editor/' . $user->image) }}" width="50px" height="50px" alt="" srcset=""></td>
 
                                         <td>{{ $user->type }}</td>
 
@@ -127,17 +122,15 @@
 
                                         <td>
 
-                                            <a class="btn btn-info"
+                                            <div class="btn-group">
+                                                <a class="btn btn-info btn-sm"
                                                 href="{{ route('Users.show', $user->id) }}">Show</a>
-
-                                            {{-- @can('user-edit') --}}
-                                            <a class="btn btn-primary"
+                                            <a class="btn btn-primary btn-sm"
                                                 href="{{ route('Users.edit', $user->id) }}">Edit</a>
-                                            {{-- @endcan
-                                        @can('user-delete') --}}
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['Users.destroy', $user->id], 'style' => 'display:inline']) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                            </div>
 
-                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['Users.destroy', $user->id], 'style' => 'display:inline']) !!}
 
                                             {!! Form::close() !!}
                                             {{-- @endcan --}}
@@ -146,7 +139,6 @@
 
                                     </tr>
                                 @endforeach
-
 
                                  </tbody>
                             </table>
@@ -167,9 +159,25 @@
 
 
 @section('scripts')
-
+<script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('toastr/toastr.min.js') }}"></script>
     <script>
         $(document).ready(function(e) {
+
+            var table =  $('#kt_datatable').DataTable({
+                         processing:true,
+                         info:true,
+                         "pageLength":5,
+                         "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"All"]],
+                         crollY: '50vh',
+                         scrollX: true,
+                         scrollCollapse: true,
+                    });
 
 
         });

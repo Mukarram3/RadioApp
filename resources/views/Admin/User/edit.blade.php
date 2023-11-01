@@ -1,6 +1,6 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Users')
+@section('title', 'Update User')
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">
@@ -90,11 +90,11 @@
 
 
 
-                        {!! Form::model($user, ['method' => 'PATCH','route' => ['Users.update', $user->id]]) !!}
+                        {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data','route' => ['Users.update', $user->id]]) !!}
 
                         <div class="row">
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -106,7 +106,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -118,7 +118,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -130,7 +130,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -142,7 +142,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -154,7 +154,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -166,7 +166,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -180,19 +180,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                                <div class="form-group">
-
-                                    <strong>Image:</strong>
-
-                                    <input type="file" name="image" multiple class="form-control">
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -207,13 +195,25 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
                                     <strong>Role:</strong>
 
                                     {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-6 col-sm-12 col-md-6">
+
+                                <div class="form-group">
+
+                                    <strong>Image:</strong>
+
+                                    <input type="file" name="image" class="form-control">
 
                                 </div>
 

@@ -43,7 +43,7 @@ class UserController extends Controller
 
     {
 
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = User::orderBy('id','DESC')->get();
 
         return view('Admin.User.index',compact('data'))
 
@@ -103,8 +103,6 @@ class UserController extends Controller
 
         ]);
 
-
-
         $input = $request->all();
 
         $input['password'] = Hash::make($input['password']);
@@ -112,7 +110,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
 
             $image = $request->file('image');
-            $path = 'storage/images/';
+            $path = 'public/editor/';
             $extension = $image->getClientOriginalExtension();
             $image_name = uniqid() . "." . $extension;
             $image->storeAs($path, $image_name);
@@ -229,16 +227,15 @@ class UserController extends Controller
 
         }
 
-
-
         $user = User::find($id);
 
         if($request->hasFile('image')){
             $image=$request->file('image');
-                $path = 'storage/images/';
+                $path = 'public/editor/';
                 $extension=$image->getClientOriginalExtension();
                 $image_name=uniqid().".".$extension;
                 $image->storeAs($path,$image_name);
+                $input['image'] = $image_name;
         }
 
 

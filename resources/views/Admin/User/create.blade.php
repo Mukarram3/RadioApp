@@ -1,9 +1,11 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Users')
+@section('title', 'Create Users')
 @section('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet"
+    />
     <style>
         .dt-button-collection{
             left: 0 !important;
@@ -91,11 +93,11 @@
 
 
 
-                        {!! Form::open(array('route' => 'Users.store','method'=>'POST')) !!}
+                        {!! Form::open(array('route' => 'Users.store','method'=>'POST','enctype' => 'multipart/form-data')) !!}
 
                         <div class="row">
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -107,7 +109,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -119,7 +121,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -131,7 +133,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -143,7 +145,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -155,7 +157,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -167,7 +169,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -181,19 +183,7 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                                <div class="form-group">
-
-                                    <strong>Image:</strong>
-
-                                    <input type="file" name="image" multiple class="form-control">
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
@@ -208,13 +198,25 @@
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-6 col-sm-12 col-md-6">
 
                                 <div class="form-group">
 
                                     <strong>Role:</strong>
 
                                     {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-6 col-sm-12 col-md-6">
+
+                                <div class="form-group">
+
+                                    <strong>Image:</strong>
+
+                                    <input type="file" name="image" class="filepond">
 
                                 </div>
 
@@ -245,15 +247,10 @@
 
 @section('scripts')
 
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.5') }}"></script>
-    <script src="{{ asset('assets/editor/js/dataTables.editor.js') }}" type="text/javascript"></script>
-
     <script>
-        $(document).ready(function(e){
-
-
+        $(document).ready(function(e) {
 
         });
-
     </script>
+
 @endsection

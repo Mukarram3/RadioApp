@@ -110,12 +110,18 @@ var KTDatatablesDataSourceAjaxServer = function() {
                 },
                 {
                     label: "Cost",
-                    name: "cost"
+                    name: "cost",
+                    // type: "integer"
                 },
                 {
-                    label: "Status",
-                    name: "status"
-                },
+                            label: "Status",
+                            type:  "select",
+                            name:  "Status",
+                            options: [
+                                { label: "Active",    value: "1"},
+                                { label: "InActive",    value: "0"},
+                            ]
+                        },
                 {
                     label: "Expiration in Months",
                     name: "expiration"

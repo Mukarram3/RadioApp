@@ -18,7 +18,6 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->string('cost')->nullable();
             $table->integer('expiration')->nullable();
-            // $table->dateTime('expiration')->nullable();
             $table->timestamps();
         });
     }

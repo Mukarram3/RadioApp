@@ -1,6 +1,6 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Schedule Artist')
+@section('title', 'Create Scheduling')
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet"
         type="text/css" />
@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="card card-custom">
                     <div class="card-body">
-
+                        <a class="btn btn-success" href="{{ route('scheduleartists') }}"> Go Back</a>
 
                         <div style="text-align: right;" class="btn-group" id="dtButtons" role="group"
                             aria-label="Button group with nested dropdown">

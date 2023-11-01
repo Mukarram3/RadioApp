@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('type')->default('paid');
             $table->text('image')->nullable();
-            $table->string('artist_name')->nullable();
+            $table->string('artist_id')->nullable();
             $table->timestamps();
         });
     }

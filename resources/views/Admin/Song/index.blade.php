@@ -28,7 +28,7 @@
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                     <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <button id="addProductBtn" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</button>
+                    <a href="{{ route('createsong') }}" id="addProductBtn" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                     <!--end::Actions-->
                 </div>
 

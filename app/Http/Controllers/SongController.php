@@ -53,6 +53,14 @@ class SongController extends Controller
     }
 
 
+    public function RadioStation_LiveDj(){
+        $artists= Artist::all();
+        $channels= Channel::all();
+        $categories= Category::all();
+        $plans= Plan::all();
+        return view('Admin.Song.create',compact('artists','channels','categories','plans'));
+    }
+
     public function indexajax()
     {
         $categories = Category::all();

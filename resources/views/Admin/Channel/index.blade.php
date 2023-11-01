@@ -2,8 +2,8 @@
 
 @section('title', 'Channels')
 @section('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+<link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">    />
     <style>
         .dt-button-collection{
             left: 0 !important;
@@ -28,7 +28,7 @@
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                     <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
+                    <a href="{{ route('createchannel') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                     <!--end::Actions-->
                 </div>
 
@@ -47,14 +47,19 @@
                         </div>
 
                         <!--begin: Datatable-->
-                        <table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable" style="margin-top: 13px !important">
+                        <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                             <thead>
                             <tr>
+                                <th><input type="checkbox" name="main_checkbox"><label></label></th>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>Type</th>
                                 <th>Artist Name</th>
+                                <th>Type</th>
+                                <th>Plan Name</th>
+                                <th>Status</th>
                                 <th>Image</th>
+                                <th>Online</th>
+                                <th>Actions <button class="btn btn-sm btn-danger d-none" id="deleteAllBtn">Delete All</button></th>
                             </tr>
                             </thead>
                         </table>
@@ -71,141 +76,164 @@
 
 @endsection
 
-
-
 @section('scripts')
 
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.5') }}"></script>
-    <script src="{{ asset('assets/editor/js/dataTables.editor.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/editor/js/editor.bootstrap4.js') }}" type="text/javascript"></script>
+<script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('toastr/toastr.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function(e){
+<script>
 
-        "use strict";
-var KTDatatablesDataSourceAjaxServer = function() {
 
-    var initTable1 = function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var tableEditor= new $.fn.dataTable.Editor({
-            ajax: HOST_URL+ "/Channel/store-channel",
-            type: "post",
-            table: "#kt_datatable",
-            display: "bootstrap",
-            idSrc:'id',
-            keys:true,
-            fields: [
-                {
-                    label: "Title",
-                    name: "title"
-                },
-                {
-                    label: "Type",
-                    name: "type"
-                },
-                {
-                    label: "Artist Name",
-                    name: "artist_name"
-                },
-                {
-                            label: "Image:", name: "image",
-                            type: "upload",
-                            display: function (file_id) {
-                                // console.log(file_id);
-                                return '<img src="' + HOST_URL + '/storage/' + file_id + '"/>';
-                            },
-                            clearText: "Clear",
-                            noImageText: 'No image'
-                        }
-            ]
-        });
-        $('#kt_datatable').on('click', 'tbody td:not(:first-child)', function (e) {
-            tableEditor.inline( this ,{
-                onBlur: 'submit',
-                scope:'cell'
-            });
-        });
-        var table = $('#kt_datatable');
+    toastr.options.preventDuplicates = true;
 
-        // begin first table
-        var newtable = table.DataTable({
-            dom: "Bfrtip",
-            responsive: true,
-            searchDelay: 500,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: HOST_URL + '/Channel/fetch-channel',
-                type: 'GET',
-            },
-            "select": {
-                'style': 'multi'
-            },
-            columns: [
-                {data: 'id'},
-                {data: 'title'},
-                {data: 'type'},
-                {data: 'artist_name'},
-                {
-                            data: "image",
-                            render: function (file_id) {
-                                return file_id ?
-                                    '<img style="height: auto;width: 70px;" src="' + HOST_URL + "/storage/" + file_id + '"/>' :
-                                    null;
-                            },
-                            defaultContent: "No image",
-                            title: "Image"
-                        },
-            ],
-            buttons: [
-                { extend: "create", editor: tableEditor ,className:'btn btn-outline-success font-weight-bold'},
-                { extend: "edit",   editor: tableEditor ,className:'btn btn-outline-warning font-weight-bold'},
-                { extend: "remove", editor: tableEditor ,className:'btn btn-outline-danger font-weight-bold'},
-                // {extend: 'print', className: 'btn btn-info font-weight-bold'},
-                // {extend: 'copy', className: 'btn btn-muted font-weight-bold'},
-                // {extend: 'excel', className: 'btn btn-blue font-weight-bold'},
-                // {extend: 'pdf', className: 'btn btn-red font-weight-bold'},
-                // {extend: 'csv', className: 'btn btn-green font-weight-bold'}
-                {
-                    extend: 'collection',
-                    text: 'Export',
-                    className:'btn btn-dark font-weight-bold dropdown-toggle',
-                    buttons: [
-                        'copy',
-                        'excel',
-                        'csv',
-                        'pdf',
-                        'print'
-                    ]
-                }
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-            ],
+            $(document).ready(function(e){
 
-        });
-        newtable.buttons( 0, null ).containers().appendTo( '#dtButtons' );
+                    //GET ALL COUNTRIES
 
-    };
+                var table =  $('#kt_datatable').DataTable({
+                         processing:true,
+                         info:true,
+                         ajax:"{{ route('get.channels.list') }}",
+                         "pageLength":5,
+                         "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50,"All"]],
+                         crollY: '50vh',
+                         scrollX: true,
+                         scrollCollapse: true,
+                         columns:[
+                             {data:'checkbox', name:'checkbox', orderable:false, searchable:false},
+                             {data:'DT_RowIndex', name:'DT_RowIndex'},
+                             {data:'title', name:'title', defaultContent: ''},
+                             {data:'artist.name', name:'artist_id',defaultContent: ''},
+                             {data:'type', name:'type'},
+                             {data:'plans.title', name:'plan_id', defaultContent: ''},
+                             {data:'status', name:'status'},
+                             {data: 'image',
+                             name : 'id',
+                             render: function( data, type, full, meta ) {
+                             return "<img src=\" {{asset('storage/')}}/" + data + "\" height=\"50\" />";
+                             }
+                             },
 
-    return {
+                             {data:'online', name:'online'},
+                             {data:'actions', name:'actions', orderable:false, searchable:false},
+                         ]
+                    }).on('draw', function(){
+                        $('input[name="country_checkbox"]').each(function(){this.checked = false;});
+                        $('input[name="main_checkbox"]').prop('checked', false);
+                        $('button#deleteAllBtn').addClass('d-none');
+                    });
 
-        //main function to initiate the module
-        init: function() {
-            initTable1();
-        },
 
-    };
+                    // Select Multiple checkbox and delete
 
-}();
+    $(document).on('click','input[name="main_checkbox"]', function(){
+                      if(this.checked){
+                        $('input[name="country_checkbox"]').each(function(){
+                            this.checked = true;
+                        });
+                      }else{
+                         $('input[name="country_checkbox"]').each(function(){
+                             this.checked = false;
+                         });
+                      }
+                      toggledeleteAllBtn();
+               });
 
-jQuery(document).ready(function() {
-    KTDatatablesDataSourceAjaxServer.init();
-});
+               $(document).on('change','input[name="country_checkbox"]', function(){
 
-});
+                   if( $('input[name="country_checkbox"]').length == $('input[name="country_checkbox"]:checked').length ){
+                       $('input[name="main_checkbox"]').prop('checked', true);
+                   }else{
+                       $('input[name="main_checkbox"]').prop('checked', false);
+                   }
+                   toggledeleteAllBtn();
+               });
 
-    </script>
+
+               function toggledeleteAllBtn(){
+                   if( $('input[name="country_checkbox"]:checked').length > 0 ){
+                       $('button#deleteAllBtn').text('Delete ('+$('input[name="country_checkbox"]:checked').length+')').removeClass('d-none');
+                   }else{
+                       $('button#deleteAllBtn').addClass('d-none');
+                   }
+               }
+
+                               //DELETE Product RECORD
+                               $(document).on('click','#deleteCountryBtn', function(){
+                        var channel_id = $(this).data('id');
+                        var url = '<?= route("delete.channel") ?>';
+
+                        swal.fire({
+                             title:'Are you sure?',
+                             html:'You want to <b>delete</b> this Channel',
+                             showCancelButton:true,
+                             showCloseButton:true,
+                             cancelButtonText:'Cancel',
+                             confirmButtonText:'Yes, Delete',
+                             cancelButtonColor:'#d33',
+                             confirmButtonColor:'#556ee6',
+                             width:300,
+                             allowOutsideClick:false
+                        }).then(function(result){
+                              if(result.value){
+                                  $.post(url,{channel_id:channel_id}, function(data){
+                                       if(data.code == 1){
+                                           $('#kt_datatable').DataTable().ajax.reload(null, false);
+                                           toastr.success(data.msg);
+                                       }else{
+                                           toastr.error(data.msg);
+                                       }
+                                  },'json');
+                              }
+                        });
+
+                    });
+
+                    $(document).on('click','button#deleteAllBtn', function(){
+                   var checkedCountries = [];
+                   $('input[name="country_checkbox"]:checked').each(function(){
+                       checkedCountries.push($(this).data('id'));
+                   });
+
+                   var url = '{{ route("delete.selected.channels") }}';
+                   if(checkedCountries.length > 0){
+                       swal.fire({
+                           title:'Are you sure?',
+                           html:'You want to delete <b>('+checkedCountries.length+')</b> Channels',
+                           showCancelButton:true,
+                           showCloseButton:true,
+                           confirmButtonText:'Yes, Delete',
+                           cancelButtonText:'Cancel',
+                           confirmButtonColor:'#556ee6',
+                           cancelButtonColor:'#d33',
+                           width:300,
+                           allowOutsideClick:false
+                       }).then(function(result){
+                           if(result.value){
+                               $.post(url,{countries_ids:checkedCountries},function(data){
+                                  if(data.code == 1){
+                                      $('#kt_datatable').DataTable().ajax.reload(null, true);
+                                      toastr.success(data.msg);
+                                  }
+                               },'json');
+                           }
+                       })
+                   }
+               });
+
+    });
+
+
+        </script>
 @endsection

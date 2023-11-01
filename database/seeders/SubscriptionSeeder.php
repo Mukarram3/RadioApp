@@ -27,7 +27,7 @@ class SubscriptionSeeder extends Seeder
         ]);
 
         DB::table('subscriptions')->insert([
-            'user_id' => 1,
+            'user_id' => 2,
             'plan_id' => 3,
             'expiration' => $dateTime->addMonths(5)->format('Y-m-d H:i:s'),
             'cost' => 100,

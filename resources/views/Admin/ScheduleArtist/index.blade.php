@@ -1,6 +1,6 @@
 @extends('Partials.AdminLayout')
 
-@section('title', 'Live Dj & Radio Stations')
+@section('title', 'Schedule Artists')
 @section('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">    />
@@ -28,7 +28,7 @@
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                     <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <button id="addProductBtn" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</button>
+                    <a href="{{ route('createscheduleartist') }}" id="addProductBtn" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                     <!--end::Actions-->
                 </div>
 
