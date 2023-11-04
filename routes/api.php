@@ -102,6 +102,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'Subscription'], function (){
 
         Route::post('store',[\App\Http\Controllers\SubscriptionController::class, 'store']);
+        Route::post('expire',[\App\Http\Controllers\SubscriptionController::class, 'expire']);
         Route::get('time_left',[\App\Http\Controllers\SubscriptionController::class, 'time_left']);
 
     });

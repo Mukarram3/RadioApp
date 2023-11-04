@@ -35,7 +35,7 @@ class ChatController extends Controller
 
     public function receive(Request $request){
         try{
-            $Chat= Chat::with('user')->get();
+            $Chat= Chat::with('user')->orderBy('created_at', 'desc')->get();
             return response()->json([
                 'error' => false,
                 'message' => 'success',

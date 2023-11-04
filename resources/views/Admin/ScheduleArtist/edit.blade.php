@@ -2,9 +2,6 @@
 
 @section('title', 'Edit Scheduling')
 @section('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.5') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ url('assets/editor/css/editor.bootstrap4.css') }}" rel="stylesheet" type="text/css">
     <style>
         .dt-button-collection {
             left: 0 !important;
@@ -109,10 +106,6 @@
 
 
 @section('scripts')
-
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.5') }}"></script>
-    <script src="{{ asset('assets/editor/js/dataTables.editor.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/editor/js/editor.bootstrap4.js') }}" type="text/javascript"></script>
 
     <script>
 

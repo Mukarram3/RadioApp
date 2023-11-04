@@ -2,10 +2,6 @@
 
 @section('title', 'Create Users')
 @section('css')
-<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet"
-    />
     <style>
         .dt-button-collection{
             left: 0 !important;
