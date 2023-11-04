@@ -53,11 +53,20 @@ class ChatController extends Controller
     public function delete(Request $request){
         try{
             $Chat= Chat::find($request->id);
-            $Chat->delete();
-            return response()->json([
-                'error'=> false,
-                'message'=> 'message deleted'
-                ]);
+            if($Chat->user_id == auth()->user()->id){
+                $Chat->delete();
+                return response()->json([
+                    'error'=> false,
+                    'message'=> 'message deleted'
+                    ]);
+            }
+            else{
+                return response()->json([
+                    'error'=> false,
+                    'message'=> 'Sorry you can"t delete this message'
+                    ]);
+            }
+
         }
         catch(Exception $e){
             return response()->json([
