@@ -59,7 +59,7 @@ class SubscriptionController extends Controller
 
         else{
             return response()->json([
-                'error' => false,
+                'error' => true,
                 'message' => 'Please Subscribe to plan First',
             ]);
         }

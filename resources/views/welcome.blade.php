@@ -33,7 +33,7 @@
 			<!--begin::Login-->
 			<div class="login login-3 wizard d-flex flex-column flex-lg-row flex-column-fluid">
 				<!--begin::Aside-->
-				<div class="login-aside d-flex flex-column flex-row-auto">
+				<div class="login-aside d-flex flex-column flex-row-auto" style="padding: 0 2.5rem">
 					<!--begin::Aside Top-->
 					<div class="d-flex flex-column-auto flex-column pt-15">
 						<!--begin::Aside header-->
@@ -64,7 +64,7 @@
 					<!--begin::Wrapper-->
 					<div class="d-flex flex-row-fluid flex-center">
 						<!--begin::Signin-->
-						<div class="login-form" style="width: 60%;">
+						<div class="col-lg-7 col-md-8 col-sm-10">
 							<!--begin::Form-->
 							<form method="POST" action="{{ route('login') }}" class="form" id="kt_login_singin_form">
                                 @csrf

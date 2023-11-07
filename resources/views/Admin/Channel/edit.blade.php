@@ -117,7 +117,6 @@
                                     <div class="col-lg-12">
                                         <label> Image:</label>
                                         <input type="file" class="filepond" name="image" />
-                                        <input type="hidden" value="{{ $channelDetails->image }}" class="imagepath">
                                     </div>
 
                                 </div>
@@ -173,11 +172,12 @@
             acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
         });
 
+        var channelDetails = @json($channelDetails);
+        // console.log("{{ url('/') }}" + '/storage/'+ channelDetails.image);
+
         const inputElement = document.querySelector('input[type="file"]');
-            const pond = FilePond.create(inputElement);
-            var path= $('.imagepath').val();
-            // $('.image').attr('src', "{{ url('/') }}" + '/storage/'+path);
-        pond.addFile("{{ url('/') }}" + '/storage/'+path ,{index: 0});
+        const pond = FilePond.create(inputElement);
+        pond.addFile("{{ url('/') }}" + '/storage/'+ channelDetails.image ,{index: 0});
 
         });
     </script>

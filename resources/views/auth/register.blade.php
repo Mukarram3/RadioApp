@@ -64,7 +64,7 @@
 					<!--begin::Wrapper-->
 					<div class="d-flex flex-row-fluid flex-center">
 						<!--begin::Signin-->
-						<div class="login-form" style="width: 60%;">
+                        <div class="col-lg-7 col-md-8 col-sm-10">
 							<!--begin::Form-->
 							<form method="POST" action="{{ route('register') }}" class="form" id="kt_login_singin_form">
                                 @csrf
