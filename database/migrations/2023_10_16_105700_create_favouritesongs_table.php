@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('user_id')->nullable();
             $table->string('song_id')->nullable();
-            $table->string('expiration')->nullable();
-            $table->string('cost')->nullable();
             $table->timestamps();
         });
     }

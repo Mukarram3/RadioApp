@@ -24,7 +24,7 @@ class ChannelController extends Controller
     {
         $userId = auth()->user()->id;
 
-        $channels = Channel::all();
+        $channels = Channel::where('status', true)->get();
 
         $channels->each(function ($channel) use ($userId) {
             $isSubscribed = false;
@@ -88,7 +88,6 @@ class ChannelController extends Controller
         $channel = new Channel();
         $channel->title = $request->title;
         $channel->artist_id = $request->artist;
-        $channel->online = $request->online;
         $channel->status = $request->status;
         $channel->type = $request->type;
         $channel->plan_id = $request->plan;
@@ -173,7 +172,6 @@ class ChannelController extends Controller
 
             $channel->title = $request->title;
             $channel->artist_id = $request->artist;
-            $channel->online = $request->online;
             $channel->status = $request->status;
             $channel->type = $request->type;
             $channel->plan_id = $request->plan;
@@ -216,6 +214,7 @@ class ChannelController extends Controller
             $channel = new Channel();
             $channel->title = $request->title;
             $channel->artist_id = $request->artist_id;
+            $channel->plan_id = $request->plan_id;
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $path = 'storage/editor/';

@@ -18,7 +18,7 @@ class SongController extends Controller
         $this->middleware('CheckExpiredToken', ['only'=> ['index','getcategorysongs']]);
     }
     public function index(){
-        $Song= Song::with(['favsongs' => function ($query) {
+        $Song= Song::where('type', 'free')->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
         ->get();
@@ -35,7 +35,7 @@ class SongController extends Controller
     }
 
     public function getcategorysongs(Request $request){
-        $Song= Song::where('category_id', $request->category_id)
+        $Song= Song::where('category_id', $request->category_id)->where('type', 'free')
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])

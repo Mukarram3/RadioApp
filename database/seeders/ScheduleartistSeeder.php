@@ -19,7 +19,6 @@ class ScheduleartistSeeder extends Seeder
         $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('scheduleartists')->insert([
             'artist_id' => '1',
-            'status' => 'inactive',
             'date' => '21 Oct Sat',
             'start_time' => '02:29pm',
             'end_time' => '05:29pm',
@@ -29,7 +28,6 @@ class ScheduleartistSeeder extends Seeder
 
         DB::table('scheduleartists')->insert([
             'artist_id' => '2',
-            'status' => 'inactive',
             'date' => '20 Oct Fri',
             'start_time' => '12:43pm',
             'end_time' => '04:39pm',

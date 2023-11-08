@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('scheduleartists', function (Blueprint $table) {
             $table->id();
             $table->integer('artist_id')->nullable();
-            $table->string('status')->default('active');
             $table->string('date')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();

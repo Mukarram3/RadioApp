@@ -13,7 +13,7 @@ class PlanController extends Controller
         $this->middleware('CheckExpiredToken', ['only'=> ['getplans']]);
     }
     public function getplans(){
-        $Plan= Plan::with('subscriptions')->get();
+        $Plan= Plan::where('status', true)->with('subscriptions')->get();
 
         $Plan->each(function ($plan) {
             if ($plan->subscriptions) {

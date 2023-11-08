@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use App\Models\Song;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +15,7 @@ class ScheduleArtist extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken', ['only'=> ['scheduleartists']]);
+        $this->middleware('CheckExpiredToken', ['only'=> ['scheduleartists','del_artist']]);
     }
 
     public function scheduleartists(Request $request){
@@ -23,6 +25,25 @@ class ScheduleArtist extends Controller
             'message' => 'Success',
             'data' => $scheduleartists,
         ]);
+    }
+
+    public function del_artist(Request $request){
+
+        try{
+            // \App\Models\ScheduleArtist::whereIn('id', $request->id)->delete();
+            $Scheduleartists=\App\Models\Scheduleartist::whereIn('id', $request->id)->delete();
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+        ]);
+    }
+    catch(Exception $e){
+        return response()->json([
+            'error'=> true,
+            'message'=> $e->getMessage(),
+            ]);
+        }
+
     }
 
     public function indexajax()
@@ -82,7 +103,6 @@ class ScheduleArtist extends Controller
         $scheduleArtist->date= $formattedDate;
         $scheduleArtist->start_time= $formattedstartTime;
         $scheduleArtist->end_time= $formattedendTime;
-        $scheduleArtist->status= 'inactive';
 
         $scheduleArtist->save();
 
@@ -109,7 +129,6 @@ class ScheduleArtist extends Controller
         $product_ids = $request->countries_ids;
         $Scheduleartists=\App\Models\Scheduleartist::whereIn('id', $product_ids)->get();
         foreach($Scheduleartists as $Scheduleartist){
-            // $song->is_scheduled= false;
             $Scheduleartist->delete();
         }
         return response()->json(['code' => 1, 'msg' => 'These Artists have been Unschedule from database']);
@@ -143,7 +162,6 @@ class ScheduleArtist extends Controller
             $scheduleArtist->date= $request->date;
             $scheduleArtist->start_time= $request->start_time;
             $scheduleArtist->end_time= $request->end_time;
-            // $scheduleArtist->status= 'inactive';
 
             $query = $scheduleArtist->update();
 

@@ -28,7 +28,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-Route::group(['middleware' => 'api'], function ($router) {
+// Route::group(['middleware' => 'api'], function ($router) {
 
     //     Auth Routes
 
@@ -89,6 +89,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'schedule'], function (){
 
         Route::post('/artists',[\App\Http\Controllers\ScheduleArtist::class, 'scheduleartists']);
+        Route::post('/del_artist',[\App\Http\Controllers\ScheduleArtist::class, 'del_artist']);
 
     });
 
@@ -121,4 +122,4 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     });
 
-});
+// });

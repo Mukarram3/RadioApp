@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('type')->default('paid');
             $table->text('image')->nullable();
+            $table->text('status')->default('active');
+            $table->text('plan_id')->nullable();
             $table->string('artist_id')->nullable();
             $table->timestamps();
         });
