@@ -18,19 +18,19 @@ class SliderSeeder extends Seeder
 
         $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('sliders')->insert([
-            'image' => 'editor/20231009_170406_01.jpg',
+            'image' => 'editor/654290e1e63a6.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
         DB::table('sliders')->insert([
-            'image' => 'editor/20231009_170504_2daed29885944b1da2a93cc9d9421fd4.jpg',
+            'image' => 'editor/20231101_175710_923007675362_status_4c965aac272d479782368e56f6d0a173.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
         DB::table('sliders')->insert([
-            'image' => 'editor/20231009_170514_923007675362_status_3b74ab96fac044dea6d7297561564df9.jpg',
+            'image' => 'editor/20231101_175727_923073588239_status_4e07e963620f4a1ead87ae1cd11f6237.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

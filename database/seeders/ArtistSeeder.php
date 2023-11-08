@@ -19,27 +19,27 @@ class ArtistSeeder extends Seeder
         $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'editor/20231008_185238_923073588239_status_249c5ea761f54a2f8de4417457b733b3.jpg',
+            'image' => 'editor/654290e1e63a6.jpg',
             'is_scheduled' => true,
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'editor/20231008_185228_923015967113_status_79990de39ee44362aa9b229aee69c471.jpg',
+            'image' => 'editor/20231101_175710_923007675362_status_4c965aac272d479782368e56f6d0a173.jpg',
             'is_scheduled' => true,
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'editor/20231008_185217_2476e1165a8443c9bdb8e2707c589095.jpg',
+            'image' => 'editor/20231101_175727_923073588239_status_4e07e963620f4a1ead87ae1cd11f6237.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
         DB::table('artists')->insert([
             'name' => 'artist name',
-            'image' => 'editor/20231008_185200_2daed29885944b1da2a93cc9d9421fd4.jpg',
+            'image' => 'editor/20231101_175738_923073588239_status_2d02620c6b23437cabaf0cc9ea9ad617.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

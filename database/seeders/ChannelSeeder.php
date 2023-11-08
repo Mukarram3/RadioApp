@@ -21,7 +21,7 @@ $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('channels')->insert([
             'title' => 'CH1 Reggage',
             'type' => 'free',
-            'image' => 'editor/20231009_181635_2daed29885944b1da2a93cc9d9421fd4.jpg',
+            'image' => 'editor/654290e1e63a6.jpg',
             'artist_name' => 'artist_name',
             'created_at' => $datetime,
             'updated_at' => $datetime
@@ -29,7 +29,7 @@ $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('channels')->insert([
             'title' => 'CH2 Dance',
             'type' => 'paid',
-            'image' => 'editor/20231009_181645_923007675362_status_3b74ab96fac044dea6d7297561564df9.jpg',
+            'image' => 'editor/20231101_175710_923007675362_status_4c965aac272d479782368e56f6d0a173.jpg',
             'artist_name' => 'artist_name',
             'created_at' => $datetime,
             'updated_at' => $datetime
@@ -45,7 +45,7 @@ $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('channels')->insert([
             'title' => 'CH4 Romance',
             'type' => 'paid',
-            'image' => 'editor/20231009_181705_923073588239_status_2d02620c6b23437cabaf0cc9ea9ad617.jpg',
+            'image' => 'editor/20231101_175727_923073588239_status_4e07e963620f4a1ead87ae1cd11f6237.jpg',
             'artist_name' => 'artist_name',
             'created_at' => $datetime,
             'updated_at' => $datetime
