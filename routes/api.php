@@ -3,9 +3,6 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\Api\Socialite\FacebookController;
-use App\Http\Controllers\Api\Socialite\GitHubController;
-use App\Http\Controllers\Api\Socialite\GoogleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +25,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-// Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'api'], function ($router) {
 
     //     Auth Routes
 
@@ -62,6 +59,7 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
     Route::group(['prefix' => 'channels'], function (){
 
         Route::get('getchannels',[\App\Http\Controllers\ChannelController::class, 'getchannels']);
+        Route::get('getchannelsongs',[\App\Http\Controllers\ChannelController::class, 'getchannelsongs']);
         Route::post('store-channel', [\App\Http\Controllers\ChannelController::class, 'storeChannel']);
 
     });
@@ -89,6 +87,7 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
     Route::group(['prefix' => 'schedule'], function (){
 
         Route::post('/artists',[\App\Http\Controllers\ScheduleArtist::class, 'scheduleartists']);
+        Route::post('/scheduleartistsongs',[\App\Http\Controllers\ScheduleArtist::class, 'scheduleartistsongs']);
         Route::post('/del_artist',[\App\Http\Controllers\ScheduleArtist::class, 'del_artist']);
 
     });
@@ -122,4 +121,4 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 
     });
 
-// });
+});

@@ -27,6 +27,26 @@ class ScheduleArtist extends Controller
         ]);
     }
 
+
+    public function scheduleartistsongs(Request $request){
+        $Song= Song::where('artist_id', $request->artist_id)
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+            'artist_songs' => $Song,
+        ]);
+    }
+
     public function del_artist(Request $request){
 
         try{
@@ -73,7 +93,7 @@ class ScheduleArtist extends Controller
     }
 
     public function create(){
-        $Artists= Artist::all();
+        $Artists= Artist::where('is_scheduled', false)->get();
         return view('Admin.ScheduleArtist.create', compact('Artists'));
     }
 
@@ -106,6 +126,10 @@ class ScheduleArtist extends Controller
 
         $scheduleArtist->save();
 
+        $artist= Artist::find($request->artist_id);
+        $artist->is_scheduled= true;
+        $artist->update();
+
         return redirect()->route('scheduleartists')->with(['success' =>'Schedule saved successfully.']);
     }
 
@@ -113,8 +137,13 @@ class ScheduleArtist extends Controller
     public function destroy(Request $request)
     {
         $productid = $request->country_id;
+
         $data = \App\Models\Scheduleartist::find($productid);
-        // $data->status= 'inactive';
+
+        $artist= Artist::find($data->artist_id);
+        $artist->is_scheduled= false;
+        $artist->save();
+
         $query=$data->delete();
 
         if ($query) {
@@ -127,8 +156,14 @@ class ScheduleArtist extends Controller
     public function deleteSelectedScheduleArtist(Request $request)
     {
         $product_ids = $request->countries_ids;
+
         $Scheduleartists=\App\Models\Scheduleartist::whereIn('id', $product_ids)->get();
         foreach($Scheduleartists as $Scheduleartist){
+
+            $artist= Artist::find($Scheduleartist->artist_id);
+            $artist->is_scheduled= false;
+            $artist->save();
+
             $Scheduleartist->delete();
         }
         return response()->json(['code' => 1, 'msg' => 'These Artists have been Unschedule from database']);

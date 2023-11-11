@@ -52,12 +52,10 @@
                                 <th><input type="checkbox" name="main_checkbox"><label></label></th>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>Artist Name</th>
                                 <th>Type</th>
                                 <th>Plan Name</th>
                                 <th>Status</th>
                                 <th>Image</th>
-                                <th>Online</th>
                                 <th>Actions <button class="btn btn-sm btn-danger d-none" id="deleteAllBtn">Delete All</button></th>
                             </tr>
                             </thead>
@@ -113,7 +111,6 @@
                              {data:'checkbox', name:'checkbox', orderable:false, searchable:false},
                              {data:'DT_RowIndex', name:'DT_RowIndex'},
                              {data:'title', name:'title', defaultContent: ''},
-                             {data:'artist.name', name:'artist_id',defaultContent: ''},
                              {data:'type', name:'type'},
                              {data:'plans.title', name:'plan_id', defaultContent: ''},
                              {data:'status', name:'status'},
@@ -123,8 +120,6 @@
                              return "<img src=\" {{asset('storage/')}}/" + data + "\" height=\"50\" />";
                              }
                              },
-
-                             {data:'online', name:'online'},
                              {data:'actions', name:'actions', orderable:false, searchable:false},
                          ]
                     }).on('draw', function(){

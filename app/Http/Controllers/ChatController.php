@@ -11,7 +11,7 @@ class ChatController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('CheckExpiredToken');
+        $this->middleware('CheckExpiredToken');
     }
     public function send(Request $request){
 

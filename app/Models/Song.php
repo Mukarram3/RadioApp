@@ -9,6 +9,9 @@ class Song extends Model
 {
     use HasFactory;
 
+    protected $table= 'songs';
+    protected $fillable = ['stream_url'];
+
 
     public function hasartist(){
         return $this->belongsTo(Artist::class, 'artist_id', 'id');

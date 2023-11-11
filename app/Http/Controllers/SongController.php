@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SongDataTableEditor;
 use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Channel;
@@ -18,7 +19,7 @@ class SongController extends Controller
         $this->middleware('CheckExpiredToken', ['only'=> ['index','getcategorysongs']]);
     }
     public function index(){
-        $Song= Song::where('type', 'free')->with(['favsongs' => function ($query) {
+        $Song= Song::where('type', 'free')->orWhere('type', null)->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
         ->get();
@@ -35,7 +36,7 @@ class SongController extends Controller
     }
 
     public function getcategorysongs(Request $request){
-        $Song= Song::where('category_id', $request->category_id)->where('type', 'free')
+        $Song= Song::where('category_id', $request->category_id)
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
@@ -188,6 +189,24 @@ class SongController extends Controller
         $product_ids = $request->countries_ids;
         Song::whereIn('id', $product_ids)->delete();
         return response()->json(['code' => 1, 'msg' => 'Radio Statios or Live DJ have been deleted from database']);
+    }
+
+
+
+
+    public function livedjindex()
+    {
+        return view('Admin.Song.create_liveDJ');
+    }
+
+    public function fetchlivedj(){
+        $LiveDj=Song::where('stream_type','live dj')->get();
+        return DataTables::of($LiveDj)->make(true);
+    }
+
+    public function storelivedj(SongDataTableEditor $editor)
+    {
+        return $editor->process(\request());
     }
 
 

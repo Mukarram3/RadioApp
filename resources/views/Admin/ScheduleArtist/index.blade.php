@@ -55,7 +55,6 @@
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Status</th>
                                 <th>Actions <button class="btn btn-sm btn-danger d-none" id="deleteAllBtn">Delete All</button></th>
                             </tr>
                             </thead>
@@ -120,7 +119,6 @@ $.ajaxSetup({
                          {data:'date', name:'date'},
                          {data:'start_time', name:'start_time'},
                          {data:'end_time', name:'end_time'},
-                         {data:'status', name:'status'},
                          {data:'actions', name:'actions', orderable:false, searchable:false},
                      ]
                 }).on('draw', function(){

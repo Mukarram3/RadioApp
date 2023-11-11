@@ -272,11 +272,10 @@ class UserController extends Controller
 
     {
 
-        User::find($id)->delete();
+    }
 
-        return redirect()->route('Users.index')
-
-            ->with('success','User deleted successfully');
-
+    public function delete(Request $request){
+        User::find($request->country_id)->delete();
+        return response()->json(['code' => 1, 'msg' => 'This User has been Deleted from database']);
     }
 }

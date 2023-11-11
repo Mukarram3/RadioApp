@@ -1990,7 +1990,7 @@
     @yield('js')
 
 
-    @if(Session::has('message'))
+    @if(Session::has('success'))
     <script>
         toastr.success('','{{ session('message') }}')
     </script>

@@ -60,11 +60,11 @@
                                         <input type="text" class="form-control" name="title">
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Artist Name</label>
-                                        <select class="form-control form-control" name="artist" id="exampleSelect2">
-                                            <option value="">Choose artist</option>
-                                            @foreach ($artists as $artist)
-                                            <option value="{{ $artist->id }}">{{ $artist->name }}</option>
+                                        <label>Plan Selected</label>
+                                        <select class="form-control form-control" name="plan" id="exampleSelect2">
+                                            <option value="">Choose Plan Name</option>
+                                            @foreach ($Plans as $Plan)
+                                            <option value="{{ $Plan->id }}">{{ $Plan->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -84,27 +84,6 @@
                                             <option value="">Choose Type</option>
                                                 <option value="free">Free</option>
                                                 <option value="paid">Paid</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label>Plan Selected</label>
-                                        <select class="form-control form-control" name="plan" id="exampleSelect2">
-                                            <option value="">Choose Plan Name</option>
-                                            @foreach ($Plans as $Plan)
-                                            <option value="{{ $Plan->id }}">{{ $Plan->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label>Online:</label>
-                                        <select class="form-control form-control" name="online" id="exampleSelect2">
-                                            <option value="">Choose Online Status</option>
-                                                <option value="1">Active</option>
-                                                <option value="0">Offline</option>
                                         </select>
                                     </div>
 

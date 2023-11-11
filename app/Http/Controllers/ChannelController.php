@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Models\Channel;
 use App\Models\Plan;
-use App\Models\User;
+use App\Models\Song;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -52,6 +52,27 @@ class ChannelController extends Controller
             'data' => $channels,
         ]);
     }
+
+
+    public function getchannelsongs(Request $request){
+        $Song= Song::where('channel_id', $request->channel_id)
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
+
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+            'artist_songs' => $Song,
+        ]);
+    }
+
     public function index()
     {
         return view('Admin.Channel.index');
@@ -59,7 +80,7 @@ class ChannelController extends Controller
 
     public function getChannelsList(Request $request)
     {
-        $Channel = Channel::with('plans', 'artist')->get();
+        $Channel = Channel::with('plans')->get();
         return DataTables::of($Channel)
             ->addIndexColumn()
             ->addColumn('actions', function ($row) {
@@ -87,7 +108,6 @@ class ChannelController extends Controller
 
         $channel = new Channel();
         $channel->title = $request->title;
-        $channel->artist_id = $request->artist;
         $channel->status = $request->status;
         $channel->type = $request->type;
         $channel->plan_id = $request->plan;
@@ -107,16 +127,6 @@ class ChannelController extends Controller
         Storage::disk('public')->put('editor/' . $imageProfile, $fStream);
         $filename = 'editor/' . $imageProfile;
         $channel['image'] = $filename;
-
-        // if ($request->hasFile('image')) {
-
-        //     $image = $request->file('image');
-        //     $path = 'public/editor/';
-        //     $extension = $image->getClientOriginalExtension();
-        //     $image_name = uniqid() . "." . $extension;
-        //     $image->storeAs($path, $image_name);
-
-        // }
         $channel->save();
 
         return redirect()->route('channelsindex')->with(['success' => 'Channel saved successfully.']);
@@ -149,10 +159,8 @@ class ChannelController extends Controller
     {
         $channel_id = $id;
         $channelDetails = Channel::where('id', $channel_id)->with('plans')->first();
-        $Channel = Channel::all();
-        $artists = Artist::all();
         $Plans = Plan::all();
-        return view('Admin.Channel.edit', compact('artists', 'Plans', 'channelDetails'));
+        return view('Admin.Channel.edit', compact('Plans', 'channelDetails'));
 
     }
 
@@ -171,7 +179,6 @@ class ChannelController extends Controller
             $channel = Channel::find($channelid);
 
             $channel->title = $request->title;
-            $channel->artist_id = $request->artist;
             $channel->status = $request->status;
             $channel->type = $request->type;
             $channel->plan_id = $request->plan;
@@ -192,15 +199,6 @@ class ChannelController extends Controller
             $filename = 'editor/' . $imageProfile;
             $channel['image'] = $filename;
 
-            // if ($request->hasFile('image')) {
-            //     $image = $request->file('image');
-            //     $path = 'public/editor/';
-            //     $extension = $image->getClientOriginalExtension();
-            //     $image_name = uniqid() . "." . $extension;
-            //     $image->storeAs($path, $image_name);
-            //     $channel->image = $image_name;
-            // }
-
             $query = $channel->update();
 
             return redirect()->route('channelsindex');
@@ -213,7 +211,6 @@ class ChannelController extends Controller
         try {
             $channel = new Channel();
             $channel->title = $request->title;
-            $channel->artist_id = $request->artist_id;
             $channel->plan_id = $request->plan_id;
             if ($request->hasFile('image')) {
                 $image = $request->file('image');

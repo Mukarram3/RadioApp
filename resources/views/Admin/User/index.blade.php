@@ -127,13 +127,10 @@
                                                 href="{{ route('Users.show', $user->id) }}">Show</a>
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('Users.edit', $user->id) }}">Edit</a>
-                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                <a class="btn btn-danger btn-sm"
+                                                id="deleteCountryBtn" data-id="{{ $user->id }}">Delete</a>
+                                                {{-- {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!} --}}
                                             </div>
-
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['Users.destroy', $user->id], 'style' => 'display:inline']) !!}
-
-                                            {!! Form::close() !!}
-                                            {{-- @endcan --}}
 
                                         </td>
 
@@ -167,6 +164,15 @@
 <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
     <script>
+
+toastr.options.preventDuplicates = true;
+
+$.ajaxSetup({
+    headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+    }
+});
+
         $(document).ready(function(e) {
 
             var table =  $('#kt_datatable').DataTable({
@@ -178,6 +184,39 @@
                          scrollX: true,
                          scrollCollapse: true,
                     });
+
+                    $(document).on('click','#deleteCountryBtn', function(){
+                    var country_id = $(this).data('id');
+                    var url = '<?= route("Users.destroy") ?>';
+
+                    // alert(country_id);
+                    swal.fire({
+                         title:'Are you sure?',
+                         html:'You want to <b>Delete</b> this User',
+                         showCancelButton:true,
+                         showCloseButton:true,
+                         cancelButtonText:'Cancel',
+                         confirmButtonText:'Yes, Delete',
+                         cancelButtonColor:'#d33',
+                         confirmButtonColor:'#556ee6',
+                         width:300,
+                         allowOutsideClick:false
+                    }).then(function(result){
+                          if(result.value){
+                              $.post(url,{country_id:country_id}, function(data){
+                                   if(data.code == 1){
+                                    toastr.success(data.msg);
+                                    setTimeout(function(){
+                                        location.reload();
+                                    }, 2000);
+                                   }else{
+                                       toastr.error(data.msg);
+                                   }
+                              },'json');
+                          }
+                    });
+
+                });
 
 
         });

@@ -60,15 +60,12 @@
                                         <input type="text" class="form-control" value="{{ $channelDetails->title }}" name="title" required>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Artist Name</label>
-                                        <select class="form-control form-control" name="artist" id="exampleSelect2">
-                                            <option value="">Choose artist</option>
-                                            @foreach($artists as $artist)
-                                            <option value="{{ $artist->id }}" {{ old('artist_id', $channelDetails->artist_id) == $artist->id ? 'selected' : '' }}>
-                                                {{ $artist->name }}
-                                            </option>
+                                        <label>Plan Selected</label>
+                                        <select class="form-control form-control" name="plan" id="exampleSelect2">
+                                            <option value="">Choose Plan Name</option>
+                                            @foreach ($Plans as $Plan)
+                                            <option value="{{ $Plan->id }}"  {{ old('plan_id', $channelDetails->plan_id) == $Plan->id ? 'selected' : '' }}>{{ $Plan->title }}</option>
                                             @endforeach
-
                                         </select>
                                     </div>
                                 </div>
@@ -87,27 +84,6 @@
                                             <option value="">Choose Type</option>
                                                 <option value="free" {{ old('type', $channelDetails->type) == 'free' ? 'selected' : '' }}>Free</option>
                                                 <option value="paid" {{ old('type', $channelDetails->type) == 'paid' ? 'selected' : '' }}>Paid</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label>Plan Selected</label>
-                                        <select class="form-control form-control" name="plan" id="exampleSelect2">
-                                            <option value="">Choose Plan Name</option>
-                                            @foreach ($Plans as $Plan)
-                                            <option value="{{ $Plan->id }}"  {{ old('plan_id', $channelDetails->plan_id) == $Plan->id ? 'selected' : '' }}>{{ $Plan->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label>Online:</label>
-                                        <select class="form-control form-control" name="online" id="exampleSelect2">
-                                            <option value="">Choose Online Status</option>
-                                                <option value="1" {{ old('online', $channelDetails->online) == '1' ? 'selected' : '' }}>Active</option>
-                                                <option value="0" {{ old('online', $channelDetails->online) == '0' ? 'selected' : '' }}>Offline</option>
                                         </select>
                                     </div>
 

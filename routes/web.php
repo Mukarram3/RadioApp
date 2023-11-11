@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'isadmin']], function(){
 
 Route::resource('Users', UserController::class);
 Route::resource('roles', RoleController::class);
+Route::post('user-delete', [UserController::class, 'delete'])->name('Users.destroy');
 
 Route::group(['prefix' => 'Category'], function () {
 
@@ -92,6 +93,10 @@ Route::group(['prefix' => 'Song'], function () {
     Route::post('/add-song', [SongController::class, 'store'])->name('create.song.details');
     Route::get('/getsongDetails/{id}', [SongController::class, 'edit'])->name('get.song.details');
     Route::post('/updateSongDetails',[SongController::class, 'update'])->name('update.song.details');
+
+    Route::get('/liveDj', [SongController::class, 'livedjindex']);
+    Route::get('fetch-livedj', [SongController::class, 'fetchlivedj']);
+    Route::post('store-livedj', [SongController::class, 'storelivedj']);
 
 });
 
