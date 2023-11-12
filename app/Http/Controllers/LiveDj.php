@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use URL;
 
-class ChatController extends Controller
+class LiveDj extends Controller
 {
     public function __construct()
     {
@@ -17,7 +15,7 @@ class ChatController extends Controller
     public function send(Request $request){
 
         try{
-            $Chat= new Chat();
+            $Chat= new \App\Models\Livedj();
             $Chat->user_id= auth()->user()->id;
             $Chat->message= $request->message;
             $Chat->save();
@@ -37,12 +35,13 @@ class ChatController extends Controller
     public function receive(Request $request){
         try{
 
-            $oneMonthAgo = Carbon::now()->subMonth();
+            $latestRecords = \App\Models\Livedj::orderBy('created_at', 'desc')
+                ->take(10)
+                ->get();
+            $latestRecordIds = $latestRecords->pluck('id')->all();
+            $Chat=\App\Models\Livedj::whereNotIn('id', $latestRecordIds)->delete();
 
-            Chat::where('created_at', '<', $oneMonthAgo)
-            ->delete();
-
-            $Chat= Chat::with('user')->orderBy('created_at', 'asc')->get();
+            $Chat= \App\Models\Livedj::with('user')->orderBy('created_at', 'asc')->get();
             return response()->json([
                 'error' => false,
                 'message' => 'success',
@@ -55,31 +54,5 @@ class ChatController extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
-    }
-
-    public function delete(Request $request){
-        try{
-            $Chat= Chat::find($request->id);
-            if($Chat->user_id == auth()->user()->id){
-                $Chat->delete();
-                return response()->json([
-                    'error'=> false,
-                    'message'=> 'message deleted'
-                    ]);
-            }
-            else{
-                return response()->json([
-                    'error'=> true,
-                    'message'=> 'Sorry you can"t delete this message'
-                    ]);
-            }
-
-        }
-        catch(Exception $e){
-            return response()->json([
-                'error'=> true,
-                'message'=> $e->getMessage(),
-                ]);
-            }
     }
 }

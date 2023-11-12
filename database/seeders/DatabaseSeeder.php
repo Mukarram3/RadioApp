@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SongSeeder::class,
             FavouritesongSeeder::class,
             SubscriptionSeeder::class,
+            LivedjSeeder::class,
          ]);
     }
 }

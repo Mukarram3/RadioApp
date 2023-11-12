@@ -115,6 +115,14 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     });
 
+    Route::group(['prefix' => 'LiveDj'], function (){
+
+        Route::post('send',[\App\Http\Controllers\LiveDj::class, 'send']);
+        Route::get('receive',[\App\Http\Controllers\LiveDj::class, 'receive']);
+        Route::post('del_message',[\App\Http\Controllers\LiveDj::class, 'delete']);
+
+    });
+
     Route::group(['prefix' => 'Search'], function (){
 
         Route::post('artist',[\App\Http\Controllers\SearchController::class, 'searchartist']);
