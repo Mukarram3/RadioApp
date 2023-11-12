@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
@@ -30,15 +31,9 @@ class ScheduleArtist extends Controller
 
     public function scheduleartistsongs(Request $request){
         $Song= Song::where('artist_id', $request->artist_id)
-        ->with(['favsongs' => function ($query) {
-            $query->where('user_id', auth()->user()->id);
-        }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id', 'category_id','plan_id','type']))
         ->get();
-
-        $Song->each(function ($song) {
-            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
-            unset($song->favsongs);
-        });
 
         return response()->json([
             'error' => false,

@@ -59,7 +59,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'channels'], function (){
 
         Route::get('getchannels',[\App\Http\Controllers\ChannelController::class, 'getchannels']);
-        Route::get('getchannelsongs',[\App\Http\Controllers\ChannelController::class, 'getchannelsongs']);
+        Route::post('getchannelsongs',[\App\Http\Controllers\ChannelController::class, 'getchannelsongs']);
         Route::post('store-channel', [\App\Http\Controllers\ChannelController::class, 'storeChannel']);
 
     });

@@ -10,7 +10,7 @@ class Song extends Model
     use HasFactory;
 
     protected $table= 'songs';
-    protected $fillable = ['stream_url'];
+    protected $fillable = ['stream_type','stream_url'];
 
 
     public function hasartist(){

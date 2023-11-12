@@ -9,6 +9,7 @@ use App\Models\Song;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
@@ -56,15 +57,9 @@ class ChannelController extends Controller
 
     public function getchannelsongs(Request $request){
         $Song= Song::where('channel_id', $request->channel_id)
-        ->with(['favsongs' => function ($query) {
-            $query->where('user_id', auth()->user()->id);
-        }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id']))
         ->get();
-
-        $Song->each(function ($song) {
-            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
-            unset($song->favsongs);
-        });
 
         return response()->json([
             'error' => false,
