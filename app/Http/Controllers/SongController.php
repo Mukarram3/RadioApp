@@ -7,6 +7,7 @@ use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Channel;
 use App\Models\Plan;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +41,8 @@ class SongController extends Controller
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']))
         ->get();
 
         $Song->each(function ($song) {
