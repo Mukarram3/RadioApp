@@ -19,7 +19,8 @@ class FavouritesongController extends Controller
             'message' => 'Success',
             'song' => Favouritesong::where('user_id',auth()->user()->id)
             ->with(['song' => function ($query) {
-                $query->select('title', 'artist_id', 'stream_type','stream_url','created_at','updated_at');
+                // $query->select('title', 'artist_id', 'stream_type','stream_url','created_at','updated_at');
+                $query->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','category_id','plan_id','type','stream_type']));
         }])
             ->get(),
         ]);
