@@ -6,6 +6,7 @@ use App\Models\Artist;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use App\DataTables\ArtistDataTableEditor;
+use Illuminate\Support\Facades\Schema;
 use Yajra\DataTables\Facades\DataTables;
 
 class ArtistController extends Controller
@@ -28,6 +29,8 @@ class ArtistController extends Controller
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']))
         ->get();
 
         $Song->each(function ($song) {

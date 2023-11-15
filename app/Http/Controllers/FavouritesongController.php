@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favouritesong;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class FavouritesongController extends Controller
 {
@@ -17,6 +18,8 @@ class FavouritesongController extends Controller
             'error' => false,
             'message' => 'Success',
             'song' => Favouritesong::where('user_id',auth()->user()->id)
+            ->select('*')
+            ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']))
             ->with('song')
             ->get(),
         ]);
@@ -32,7 +35,7 @@ class FavouritesongController extends Controller
                 $Favouritesong->save();
                 return response()->json([
                     'error' => false,
-                    'message' => 'Success'
+                    'message' => 'Song Liked'
                 ]);
 
                 }
@@ -42,7 +45,7 @@ class FavouritesongController extends Controller
                     $Favouritesong->delete();
                     return response()->json([
                         'error' => false,
-                        'message' => 'do Success'
+                        'message' => 'Song Disliked'
                     ]);
                 }
 

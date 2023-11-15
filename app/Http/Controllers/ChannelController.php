@@ -58,7 +58,7 @@ class ChannelController extends Controller
     public function getchannelsongs(Request $request){
         $Song= Song::where('channel_id', $request->channel_id)
         ->select('*')
-        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id']))
+        ->select(array_diff(Schema::getColumnListing('songs'), ['category_id']))
         ->get();
 
         return response()->json([
