@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\Song;
 use Illuminate\Support\Carbon;
 
 class LiveDj extends Controller
@@ -54,5 +55,16 @@ class LiveDj extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
+    }
+
+    public function stream_url(){
+        $LiveDj= Song::where('stream_type', 'live dj')
+        ->select('stream_url')
+        ->first();
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+            'data' => $LiveDj,
+        ]);
     }
 }

@@ -119,6 +119,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
         Route::post('send',[\App\Http\Controllers\LiveDj::class, 'send']);
         Route::get('receive',[\App\Http\Controllers\LiveDj::class, 'receive']);
+        Route::get('stream_url',[\App\Http\Controllers\LiveDj::class, 'stream_url']);
         Route::post('del_message',[\App\Http\Controllers\LiveDj::class, 'delete']);
 
     });
