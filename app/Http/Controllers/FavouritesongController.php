@@ -18,9 +18,9 @@ class FavouritesongController extends Controller
             'error' => false,
             'message' => 'Success',
             'song' => Favouritesong::where('user_id',auth()->user()->id)
-            ->select('*')
-            ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']))
-            ->with('song')
+            ->with(['song' => function ($query) {
+                $query->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']));
+        }])
             ->get(),
         ]);
     }
