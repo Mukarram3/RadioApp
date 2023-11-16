@@ -41,20 +41,30 @@ class SubscriptionController extends Controller
 
         try{
 
-        $data= Subscription::where('user_id', auth()->user()->id)->first();
+        $data= Subscription::where('user_id', auth()->user()->id)->with('plans')->get();
 
-        if($data){
-            $created_at_dt = Carbon::parse($data->created_at);
-            $expiration_dt = Carbon::parse($data->expiration);
 
-        $time_difference = $expiration_dt->diffInHours($created_at_dt);
+        if ($data->isNotEmpty()) {
+            $subscriptionsData = [];
 
-        return response()->json([
-            'error' => false,
-            'message' => 'Success',
-            'data' => $time_difference
-        ]);
+            foreach ($data as $subscription) {
+                $currentDateTime = Carbon::now();
+                $expirationDateTime = Carbon::parse($subscription->expiration);
 
+                $timeLeftInHours = $currentDateTime->diffInHours($expirationDateTime);
+
+                $subscriptionsData[] = [
+                    'plan_name' => $subscription->plans->title,
+                    'subscription_id' => $subscription->id,
+                    'time_left_in_hours' => $timeLeftInHours
+                ];
+            }
+
+            return response()->json([
+                'error' => false,
+                'message' => 'Success',
+                'data' => $subscriptionsData
+            ]);
         }
 
         else{
