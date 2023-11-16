@@ -6,6 +6,7 @@ use App\Models\Chat;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 use URL;
 
 class ChatController extends Controller
@@ -37,17 +38,29 @@ class ChatController extends Controller
     public function receive(Request $request){
         try{
 
-            $oneMonthAgo = Carbon::now()->subMonth();
+            // $oneMonthAgo = Carbon::now()->subMonth();
 
-            Chat::where('created_at', '<', $oneMonthAgo)
-            ->delete();
+            // Chat::where('created_at', '<', $oneMonthAgo)
+            // ->delete();
 
-            $Chat= Chat::with('user')->orderBy('created_at', 'asc')->get();
+            $chats = Chat::with(['user' => function ($query) {
+                $query->select(array_diff(Schema::getColumnListing('users'), ['email_verified_at']));
+            }])
+            ->orderBy('created_at', 'asc')
+            ->get();
+
             return response()->json([
                 'error' => false,
                 'message' => 'success',
-                'data' => $Chat,
+                'data' => $chats,
             ]);
+            // $Chat= Chat::with('user')
+            // ->orderBy('created_at', 'asc')->get();
+            // return response()->json([
+            //     'error' => false,
+            //     'message' => 'success',
+            //     'data' => $Chat,
+            // ]);
         }
         catch(Exception $e){
             return response()->json([

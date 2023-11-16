@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\Song;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class LiveDj extends Controller
 {
@@ -42,7 +43,11 @@ class LiveDj extends Controller
             $latestRecordIds = $latestRecords->pluck('id')->all();
             $Chat=\App\Models\Livedj::whereNotIn('id', $latestRecordIds)->delete();
 
-            $Chat= \App\Models\Livedj::with('user')->orderBy('created_at', 'asc')->get();
+            $Chat= \App\Models\Livedj::with(['user' => function ($query) {
+                $query->select(array_diff(Schema::getColumnListing('users'), ['email_verified_at']));
+            }])
+
+            ->orderBy('created_at', 'asc')->get();
             return response()->json([
                 'error' => false,
                 'message' => 'success',
