@@ -44,7 +44,7 @@ class LiveDj extends Controller
             $Chat=\App\Models\Livedj::whereNotIn('id', $latestRecordIds)->delete();
 
             $Chat= \App\Models\Livedj::with(['user' => function ($query) {
-                $query->select(array_diff(Schema::getColumnListing('users'), ['email_verified_at']));
+                $query->select(array_diff(Schema::getColumnListing('users'), ['email','email_verified_at','phone','type','gender','apple_id','google_id','fb_id']));
             }])
 
             ->orderBy('created_at', 'asc')->get();
