@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->default('');
             $table->string('gender')->default('');
-            $table->text('type')->default('');
+            $table->string('type')->default('');
             $table->text('image')->default('');
             $table->string('apple_id')->default('');
             $table->string('google_id')->default('');
