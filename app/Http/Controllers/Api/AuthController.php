@@ -209,7 +209,7 @@ class AuthController extends Controller
 
             if($request->hasFile('image')){
                 $image=$request->file('image');
-                    $path = 'storage/images/';
+                $path = 'public/editor/';
                     $extension=$image->getClientOriginalExtension();
                     $image_name=uniqid().".".$extension;
                     $image->storeAs($path,$image_name);
@@ -218,7 +218,7 @@ class AuthController extends Controller
                         'fname' => $request->fname,
                         'lname' => $request->lname,
                         'gender' => $request->gender,
-                        'image' => URL::to('/').'/storage/images'.$image_name,
+                        'image' => URL::to('/').'/storage/editor/'.$image_name,
                         'type' => $request->type,
                         'password' => Hash::make($request->password),
                     ]);

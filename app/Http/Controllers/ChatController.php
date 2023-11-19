@@ -38,10 +38,10 @@ class ChatController extends Controller
     public function receive(Request $request){
         try{
 
-            // $oneMonthAgo = Carbon::now()->subMonth();
+            $oneMonthAgo = Carbon::now()->subMonth();
 
-            // Chat::where('created_at', '<', $oneMonthAgo)
-            // ->delete();
+            Chat::where('created_at', '<', $oneMonthAgo)
+            ->delete();
 
             $chats = Chat::with(['user' => function ($query) {
                 $query->select(array_diff(Schema::getColumnListing('users'), ['email','email_verified_at','phone','type','gender','apple_id','google_id','fb_id']));
@@ -54,13 +54,6 @@ class ChatController extends Controller
                 'message' => 'success',
                 'data' => $chats,
             ]);
-            // $Chat= Chat::with('user')
-            // ->orderBy('created_at', 'asc')->get();
-            // return response()->json([
-            //     'error' => false,
-            //     'message' => 'success',
-            //     'data' => $Chat,
-            // ]);
         }
         catch(Exception $e){
             return response()->json([

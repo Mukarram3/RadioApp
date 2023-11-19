@@ -60,8 +60,6 @@
                                         <input type="text" class="form-control" name="stream_url" placeholder="Enter Song Stream Url" />
                                     </div>
 
-                                </div>
-                                <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Artist:</label>
                                         <select class="form-control form-control" name="artist_id" id="exampleSelect2">
@@ -72,56 +70,52 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
+                                        <label>Stream Type:</label>
+                                        <select class="form-control stream_type" name="stream_type" id="exampleSelectl">
+                                            <option value="">Choose Streaming type</option>
+                                            <option value="radio station">Radio Station</option>
+                                            <option value="music">Music</option>
+                                            <option value="video">Video</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 channel_id">
                                         <label>Channel:</label>
-                                        <select class="form-control form-control" name="channel_id" id="exampleSelect3">
+                                        <select class="form-control" name="channel_id" id="exampleSelect3">
                                             <option value="">Choose Channel</option>
                                             @foreach ($channels as $channel)
                                             <option value="{{$channel->id}}">{{$channel->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
 
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 plan_id">
                                         <label>Plan:</label>
-                                        <select class="form-control form-control" name="plan_id" id="exampleSelect4">
+                                        <select class="form-control" name="plan_id" id="exampleSelect4">
                                             <option value="">Choose Plan</option>
                                             @foreach ($plans as $plan)
                                             <option value="{{$plan->id}}">{{$plan->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 category_id">
                                         <label>Category:</label>
-                                        <select class="form-control form-control" name="category_id" id="exampleSelectl">
+                                        <select class="form-control" name="category_id" id="exampleSelectl">
                                             <option value="">Choose Category</option>
                                             @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 type">
                                         <label>Type:</label>
-                                        <select class="form-control form-control" name="type" id="exampleSelectl">
+                                        <select class="form-control" name="type" id="exampleSelectl">
                                             <option value="paid">Paid</option>
                                             <option value="free">Free</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label>Stream Type:</label>
-                                        <select class="form-control form-control" name="stream_type" id="exampleSelectl">
-                                            <option value="">Choose Streaming type</option>
-                                            <option value="radio station">Radio Station</option>
-                                            <option value="live dj">Live Dj</option>
-                                            <option value="music">Music</option>
-                                            <option value="video">Video</option>
-                                        </select>
-                                    </div>
 
                                 </div>
+
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -151,6 +145,15 @@
     <script>
 
         $(document).ready(function(e) {
+
+            $('.stream_type').on('change',function(){
+                if($('.stream_type').val() == 'music'){
+                    $('.plan_id').remove();
+                    $('.type').remove();
+                    $('.channel_id').remove();
+                    $('.category_id').remove();
+                }
+            });
 
 
         });

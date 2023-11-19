@@ -45,8 +45,12 @@ class ScheduleArtist extends Controller
     public function del_artist(Request $request){
 
         try{
-            // \App\Models\ScheduleArtist::whereIn('id', $request->id)->delete();
-            $Scheduleartists=\App\Models\Scheduleartist::whereIn('id', $request->id)->delete();
+
+            $today = Carbon::now();
+            $oldRecords = \App\Models\Scheduleartist::where('date', '<', $today)->get();
+            foreach ($oldRecords as $record) {
+                $record->delete();
+            }
         return response()->json([
             'error' => false,
             'message' => 'Success',
@@ -105,13 +109,13 @@ class ScheduleArtist extends Controller
         $end_time = $request->input('end_time');
 
         $carbonDate = Carbon::parse($date);
-        $formattedDate = $carbonDate->format('j M D');
+        $formattedDate = $carbonDate->format('Y-m-d\TH:i:s.u\Z');
 
         $carbonstartTime = Carbon::parse($start_time);
-        $formattedstartTime = $carbonstartTime->format('h:ia');
+        $formattedstartTime = $carbonstartTime->format('Y-m-d H:i:s');
 
         $carbonendTime = Carbon::parse($end_time);
-        $formattedendTime = $carbonendTime->format('h:ia');
+        $formattedendTime = $carbonendTime->format('Y-m-d H:i:s');
 
         $scheduleArtist= new \App\Models\Scheduleartist();
         $scheduleArtist->artist_id= $request->artist_id;

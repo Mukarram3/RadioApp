@@ -32,7 +32,7 @@ class PlanController extends Controller
                     $plan->timeLeftInHours = $timeLeftInHours;
                 } else {
                     $plan->isSubscribed = false;
-                    $plan->timeLeftInHours = '';
+                    $plan->timeLeftInHours = 0;
                 }
 
                 unset($plan->subscriptions);
