@@ -17,7 +17,7 @@ class SongController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('CheckExpiredToken', ['only'=> ['index','getcategorysongs']]);
+        $this->middleware('CheckExpiredToken', ['only'=> ['index','getcategorysongs','getmusicsongs','getpodcastsongs','gettop20songs']]);
     }
     public function index(){
         $Song= Song::where('type', 'free')->orWhere('type', null)->with(['favsongs' => function ($query) {
@@ -36,13 +36,53 @@ class SongController extends Controller
         ]);
     }
 
-    public function getcategorysongs(Request $request){
-        $Song= Song::where('category_id', $request->category_id)
+    public function getmusicsongs(Request $request){
+        $Song= Song::where('stream_type', 'music')
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
         ->select('*')
-        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type']))
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type','ispodcast','istop20']))
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+            'data' => $Song,
+        ]);
+    }
+
+    public function getpodcastsongs(Request $request){
+        $Song= Song::where('ispodcast', '1')
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type','istop20']))
+        ->get();
+
+        $Song->each(function ($song) {
+            $song->isFavourite = $song->favsongs !== null && $song->favsongs->count() > 0;
+            unset($song->favsongs);
+        });
+        return response()->json([
+            'error' => false,
+            'message' => 'Success',
+            'data' => $Song,
+        ]);
+    }
+
+    public function gettop20songs(Request $request){
+        $Song= Song::where('istop20', '1')
+        ->with(['favsongs' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->select('*')
+        ->select(array_diff(Schema::getColumnListing('songs'), ['channel_id','plan_id','type','ispodcast']))
         ->get();
 
         $Song->each(function ($song) {

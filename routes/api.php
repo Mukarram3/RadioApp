@@ -74,7 +74,9 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'songs'], function (){
 
         Route::get('getsongs',[\App\Http\Controllers\SongController::class, 'index']);
-        Route::post('getcategorysongs',[\App\Http\Controllers\SongController::class, 'getcategorysongs']);
+        Route::post('getmusicsongs',[\App\Http\Controllers\SongController::class, 'getmusicsongs']);
+        Route::post('getpodcastsongs',[\App\Http\Controllers\SongController::class, 'getpodcastsongs']);
+        Route::post('gettop20songs',[\App\Http\Controllers\SongController::class, 'gettop20songs']);
 
     });
 

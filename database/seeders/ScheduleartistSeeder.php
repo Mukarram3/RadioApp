@@ -19,18 +19,18 @@ class ScheduleartistSeeder extends Seeder
         $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('scheduleartists')->insert([
             'artist_id' => '1',
-            'date' => '21 Oct Sat',
-            'start_time' => '02:29pm',
-            'end_time' => '05:29pm',
+            'date' => '2023-12-19T19:30:22.022671Z',
+            'start_time' => '2023-11-19 18:00:21',
+            'end_time' => '2023-11-19 22:00:21',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
         DB::table('scheduleartists')->insert([
             'artist_id' => '2',
-            'date' => '20 Oct Fri',
-            'start_time' => '12:43pm',
-            'end_time' => '04:39pm',
+            'date' => '2023-12-18T19:30:22.022671Z',
+            'start_time' => '2023-11-18 11:00:21',
+            'end_time' => '2023-11-18 08:00:21',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

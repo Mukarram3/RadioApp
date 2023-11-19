@@ -28,6 +28,7 @@ class SongSeeder extends Seeder
         ]);
 
         DB::table('songs')->insert([
+            'title' => 'Heartbeat FM',
             'stream_type' => 'music',
             'artist_id' => '2',
             'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
@@ -78,9 +79,39 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             'title' => '90s & 2000s Bollywood',
             'artist_id' => '4',
-            'category_id' => '2',
-            'stream_type' => 'radio station',
-            'stream_url' => 'http://streaming504.radionomy.com/radio-monaco-nightmood-aac',
+            'istop20' => '1',
+            'stream_type' => 'video',
+            'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014 - Shortcut.mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '4',
+            'istop20' => '1',
+            'stream_type' => 'video',
+            'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Leke_meri_favorite_car_mundeya(720p).mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '4',
+            'ispodcast' => '1',
+            'stream_type' => 'video',
+            'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Garry Sandhu - Banda Ban Ja - Official Video 2014 - Shortcut.mp4',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
+        ]);
+
+        DB::table('songs')->insert([
+            'title' => '90s & 2000s Bollywood',
+            'artist_id' => '4',
+            'ispodcast' => '1',
+            'stream_type' => 'music',
+            'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Do Pal Ka.mp3',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
@@ -112,7 +143,6 @@ class SongSeeder extends Seeder
             'title' => '90s & 2000s Bollywood',
             'artist_id' => '7',
             'stream_type' => 'music',
-            'category_id' => '3',
             'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Do Pal Ka.mp3',
             'created_at' => $datetime,
             'updated_at' => $datetime
@@ -121,7 +151,6 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             'title' => '90s & 2000s Bollywood',
             'artist_id' => '8',
-            'category_id' => '3',
             'stream_type' => 'music',
             'stream_url' => 'https://djsboxapp.djsbox.fun/storage/songs/Do Pal Ka.mp3',
             'created_at' => $datetime,
