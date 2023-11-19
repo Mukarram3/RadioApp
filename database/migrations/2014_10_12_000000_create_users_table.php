@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone')->default('');
             $table->string('gender')->default('');
             $table->string('type')->default('');
-            $table->text('image')->default('');
+            $table->string('image')->default('');
             $table->string('apple_id')->default('');
             $table->string('google_id')->default('');
             $table->string('fb_id')->default('');
