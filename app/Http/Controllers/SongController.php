@@ -37,7 +37,7 @@ class SongController extends Controller
     }
 
     public function getmusicsongs(Request $request){
-        $Song= Song::where('stream_type', 'music')
+        $Song= Song::where('stream_type', 'music')->where('artist_id', $request->artist_id)
         ->with(['favsongs' => function ($query) {
             $query->where('user_id', auth()->user()->id);
         }])
