@@ -211,7 +211,7 @@ class AuthController extends Controller
                 $image=$request->file('image');
                 $path = 'public/editor/';
                     $extension=$image->getClientOriginalExtension();
-                    $image_name=uniqid().".".$extension;
+                    $image_name=$image->getClientOriginalName();
                     $image->storeAs($path,$image_name);
 
                     User::find(auth()->user()->id)->update([
@@ -222,6 +222,12 @@ class AuthController extends Controller
                         'type' => $request->type,
                         'password' => Hash::make($request->password),
                     ]);
+
+                    return response()->json([
+                        'error' => false,
+                        'image' => $image->getClientOriginalName(),
+                        'message' => 'image uploaded Syccessfully',
+                    ]);
             }
             else{
                 User::find(auth()->user()->id)->update([
@@ -231,12 +237,14 @@ class AuthController extends Controller
                     'type' => $request->type,
                     'password' => Hash::make($request->password),
                 ]);
+                return response()->json([
+                    'error' => false,
+                    'image' => '',
+                    'message' => 'User Updated Syccessfully',
+                ]);
             }
 
-            return response()->json([
-                'error' => false,
-                'message' => 'User Updated Syccessfully',
-            ]);
+
 
         }
         catch (Exception $exception){
