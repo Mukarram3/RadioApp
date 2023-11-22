@@ -16,7 +16,17 @@ class ArtistController extends Controller
         $this->middleware('CheckExpiredToken', ['only'=> ['getartists','getartistsongs']]);
     }
     public function getartists(){
-        $Artist= Artist::where('is_scheduled', false)->get();
+
+        $Artist= Artist::where('is_scheduled', false)->with(['follows' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])
+        ->get();
+
+        $Artist->each(function ($user) {
+            $user->isFollow = $user->follows !== null && $user->follows->count() > 0;
+            unset($user->follows);
+        });
+
         return response()->json([
             'error' => false,
             'message' => 'Success',

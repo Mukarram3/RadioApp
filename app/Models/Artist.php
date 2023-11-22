@@ -19,4 +19,9 @@ class Artist extends Model
         return $this->hasMany(Scheduleartist::class);
     }
 
+    public function follows()
+    {
+        return $this->belongsTo(Follow::class, 'id','artist_id');
+    }
+
 }
