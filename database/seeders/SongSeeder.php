@@ -21,6 +21,7 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             'title' => 'Heartbeat FM',
             'artist_id' => '1',
+            'category_id' => '1',
             'stream_type' => 'music',
             'stream_url' => 'http://listen.42fm.ru:8000/stealkill-5.0.ogg',
             'created_at' => $datetime,
@@ -31,6 +32,7 @@ class SongSeeder extends Seeder
             'title' => 'Heartbeat FM',
             'stream_type' => 'music',
             'artist_id' => '2',
+            'category_id' => '2',
             'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
             'created_at' => $datetime,
             'updated_at' => $datetime
@@ -38,6 +40,7 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             'title' => 'Heartbeat FM',
             'artist_id' => '3',
+            'category_id' => '3',
             'stream_type' => 'radio station',
             'stream_url' => 'http://listen.42fm.ru:8000/stealkill-5.0.ogg',
             'created_at' => $datetime,
@@ -61,6 +64,7 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             'artist_id' => '3',
             'title' => 'ANCE PARTY',
+            'category_id' => '4',
             'stream_type' => 'radio station',
             'stream_url' => 'https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8',
             'created_at' => $datetime,

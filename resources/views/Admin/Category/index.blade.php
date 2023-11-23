@@ -52,6 +52,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th>Image</th>
                             </tr>
                             </thead>
                         </table>
@@ -100,6 +101,16 @@ var KTDatatablesDataSourceAjaxServer = function() {
                     label: "Category Name",
                     name: "title"
                 },
+                {
+                            label: "Image:", name: "image",
+                            type: "upload",
+                            display: function (file_id) {
+                                // console.log(file_id);
+                                return '<img src="' + HOST_URL + '/storage/' + file_id + '"/>';
+                            },
+                            clearText: "Clear",
+                            noImageText: 'No image'
+                        }
             ]
         });
         $('#kt_datatable').on('click', 'tbody td:not(:first-child)', function (e) {
@@ -127,6 +138,16 @@ var KTDatatablesDataSourceAjaxServer = function() {
             columns: [
                 {data: 'id'},
                 {data: 'title'},
+                {
+                            data: "image",
+                            render: function (file_id) {
+                                return file_id ?
+                                    '<img style="height: auto;width: 70px;" src="' + HOST_URL + "/storage/" + file_id + '"/>' :
+                                    null;
+                            },
+                            defaultContent: "No image",
+                            title: "Image"
+                        },
             ],
             buttons: [
                 { extend: "create", editor: tableEditor ,className:'btn btn-outline-success font-weight-bold'},

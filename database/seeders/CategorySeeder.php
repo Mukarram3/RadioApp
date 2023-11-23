@@ -18,24 +18,28 @@ class CategorySeeder extends Seeder
 
         $datetime = $dateTime->format('Y-m-d H:i:s');
         DB::table('categories')->insert([
-            'title' => 'Podcast',
+            'title' => 'Classic Retro',
+            'image' => 'editor/654290e1e63a6.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
         DB::table('categories')->insert([
-            'title' => 'Top 20',
+            'title' => 'Love Hits',
+            'image' => 'editor/20231101_175710_923007675362_status_4c965aac272d479782368e56f6d0a173.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
         DB::table('categories')->insert([
-            'title' => 'Music',
+            'title' => 'Party Non-Stop',
+            'image' => 'editor/65590bd64272b.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
         DB::table('categories')->insert([
-            'title' => 'Loved Ones',
+            'title' => 'Bollywood Non-Stop',
+            'image' => 'editor/20231101_175727_923073588239_status_4e07e963620f4a1ead87ae1cd11f6237.jpg',
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);

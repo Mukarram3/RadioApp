@@ -47,6 +47,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::group(['prefix' => 'category'], function (){
 
         Route::get('getcategories',[\App\Http\Controllers\CategoryController::class, 'getcategories']);
+        Route::post('getcategorysongs',[\App\Http\Controllers\CategoryController::class, 'getcategorysongs']);
 
     });
 

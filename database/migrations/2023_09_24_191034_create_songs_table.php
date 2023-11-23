@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->default('');
             $table->integer('artist_id')->nullable();
+            $table->integer('category_id')->nullable();
             $table->integer('channel_id')->nullable();
             $table->integer('plan_id')->nullable();
             $table->string('type')->default('');
